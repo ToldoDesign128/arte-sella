@@ -1,0 +1,38 @@
+.archive {
+  max-width: 80%;
+  margin: 0 auto;
+  width: 100%;
+
+  .serch-bar {
+    width: 100%;
+  }
+  .serch-results {
+    width: 100%;
+  }
+  .tag-previews {
+    padding: 60px 0;
+    width: 100%;
+
+    h2 {
+      width: 100%;
+    }
+
+    .tag-container {
+      padding-top: 30px;
+
+      h3{
+        text-transform: uppercase;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        li {
+          width: 30%;
+        }
+      }
+    }
+  }
+}

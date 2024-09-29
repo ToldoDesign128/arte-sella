@@ -23,30 +23,22 @@ function get_content_type_label($post_type)
 
 get_header(); ?>
 
-<main>
+<main class="archive">
     <!-- Sezione barra di ricerca -->
     <section class="search-bar">
         <h2>Cerca contenuti</h2>
-        <?php get_search_form(); ?>
+        <form id="ajax-search-form" method="GET">
+            <input type="text" name="s" id="search-input" placeholder="Cerca...">
+            <button type="submit">Cerca</button>
+        </form>
     </section>
 
     <!-- Sezione risultati della ricerca -->
-    <section class="search-results">
-        <?php if (is_search()) : ?>
-            <h2>Risultati della ricerca</h2>
-            <?php if (have_posts()) : ?>
-                <ul>
-                    <?php while (have_posts()) : the_post(); ?>
-                        <li>
-                            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                        </li>
-                    <?php endwhile; ?>
-                </ul>
-            <?php else : ?>
-                <p>Nessun contenuto trovato.</p>
-            <?php endif; ?>
-        <?php endif; ?>
+    <section id="search-results">
+        <h2>Risultati della ricerca</h2>
+        <div id="results-container"></div>
     </section>
+
 
     <!-- Sezione anteprime per tag -->
     <section class="tag-previews">
@@ -62,17 +54,20 @@ get_header(); ?>
             );
             $tag_query = new WP_Query($args);
             if ($tag_query->have_posts()) : ?>
-                <h3><a href="<?php echo $tag_link; ?>"><?php echo $tag->name; ?></a></h3>
-                <ul>
-                    <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
-                        <li>
-                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                            <span class="content-type">
-                                <?php echo get_content_type_label(get_post_type()); ?>
-                            </span>
-                        </li>
-                    <?php endwhile; ?>
-                </ul>
+                <div class="tag-container">
+
+                    <h3><?php echo $tag->name; ?></h3>
+                    <ul>
+                        <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
+                            <li>
+                                <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                <span class="content-type">
+                                    <?php echo get_content_type_label(get_post_type()); ?>
+                                </span>
+                            </li>
+                        <?php endwhile; ?>
+                    </ul>
+                </div>
         <?php endif;
             wp_reset_postdata();
         endforeach; ?>

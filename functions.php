@@ -91,6 +91,15 @@ function add_theme_scripts()
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
+function enqueue_custom_ajax_search_script() {
+    wp_enqueue_script('custom-ajax-search', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), null, true);
+
+    // Localizza lo script AJAX
+    wp_localize_script('custom-ajax-search', 'ajaxurl', admin_url('admin-ajax.php'));
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_ajax_search_script');
+
+
 // Filtro per Tag
 function includi_cpt_in_archivio_tag($query) {
     if ($query->is_tag() && $query->is_main_query()) {
@@ -105,3 +114,5 @@ add_action('pre_get_posts', 'includi_cpt_in_archivio_tag');
 require dirname(__FILE__) . '/functions-parts/cpt-eventi.php';
 require dirname(__FILE__) . '/functions-parts/cpt-opere.php';
 require dirname(__FILE__) . '/functions-parts/cpt-sponsor.php';
+
+require dirname(__FILE__) . '/functions-parts/ajax.php';
