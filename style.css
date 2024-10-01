@@ -14,4 +14,392 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: arte-sella
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
-*/.archive{margin:0 auto;max-width:80%}.archive,.archive .serch-bar,.archive .serch-results{width:100%}.archive .tag-previews{padding:60px 0;width:100%}.archive .tag-previews h2{width:100%}.archive .tag-previews .tag-container{padding-top:30px}.archive .tag-previews .tag-container h3{text-transform:uppercase}.archive .tag-previews .tag-container ul{display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-between}.archive .tag-previews .tag-container ul li{width:30%}
+*/
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 640px;
+}
+@media (min-width : 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width : 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width : 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width : 1920px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-optical-sizing: auto;
+  font-style: normal;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+          text-size-adjust: none;
+}
+
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+button {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+header {
+  padding: 20px 0;
+}
+header nav {
+  width: 100%;
+}
+header nav ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+}
+header nav ul li ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.b-100 {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width : 1024px) {
+  .b-100 {
+    padding: 20px 30px;
+  }
+}
+@media (min-width : 1536px) {
+  .b-100 {
+    padding: 30px 40px;
+  }
+}
+.b-100__text {
+  width: 100%;
+}
+
+.b-75-25 {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width : 1024px) {
+  .b-75-25 {
+    padding: 20px 30px;
+  }
+}
+@media (min-width : 1536px) {
+  .b-75-25 {
+    padding: 30px 40px;
+  }
+}
+.b-75-25__text {
+  width: 100%;
+}
+@media (min-width : 1024px) {
+  .b-75-25__text {
+    width: 75%;
+  }
+}
+.b-75-25__img {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width : 1024px) {
+  .b-75-25__img {
+    width: 25%;
+  }
+}
+.b-75-25__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.b-50-50 {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width : 1024px) {
+  .b-50-50 {
+    padding: 20px 30px;
+  }
+}
+@media (min-width : 1536px) {
+  .b-50-50 {
+    padding: 30px 40px;
+  }
+}
+.b-50-50__text {
+  width: 100%;
+}
+@media (min-width : 1024px) {
+  .b-50-50__text {
+    width: 50%;
+  }
+}
+.b-50-50__img {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width : 1024px) {
+  .b-50-50__img {
+    width: 50%;
+  }
+}
+.b-50-50__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.b-25-75 {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+@media (min-width : 1024px) {
+  .b-25-75 {
+    padding: 20px 30px;
+  }
+}
+@media (min-width : 1536px) {
+  .b-25-75 {
+    padding: 30px 40px;
+  }
+}
+.b-25-75__text {
+  width: 100%;
+}
+@media (min-width : 1024px) {
+  .b-25-75__text {
+    width: 25%;
+  }
+}
+.b-25-75__img {
+  width: 100%;
+  height: 100%;
+}
+@media (min-width : 1024px) {
+  .b-25-75__img {
+    width: 75%;
+  }
+}
+.b-25-75__img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.linea {
+  width: 100%;
+  padding: 20px 0;
+}
+.linea span {
+  height: 1px;
+  display: block;
+  background-color: black;
+}
+
+.separatore-s {
+  height: 20px;
+}
+@media (min-width : 1024px) {
+  .separatore-s {
+    height: 30px;
+  }
+}
+@media (min-width : 1536px) {
+  .separatore-s {
+    height: 40px;
+  }
+}
+
+.separatore-m {
+  height: 40px;
+}
+@media (min-width : 1024px) {
+  .separatore-m {
+    height: 60px;
+  }
+}
+@media (min-width : 1536px) {
+  .separatore-m {
+    height: 80px;
+  }
+}
+
+.separatore-l {
+  height: 80px;
+}
+@media (min-width : 1024px) {
+  .separatore-l {
+    height: 120px;
+  }
+}
+@media (min-width : 1536px) {
+  .separatore-l {
+    height: 160px;
+  }
+}
+
+.archive {
+  max-width: 80%;
+  margin: 0 auto;
+  width: 100%;
+}
+.archive .serch-bar {
+  width: 100%;
+}
+.archive .serch-results {
+  width: 100%;
+}
+.archive .tag-previews {
+  padding: 60px 0;
+  width: 100%;
+}
+.archive .tag-previews h2 {
+  width: 100%;
+}
+.archive .tag-previews .tag-container {
+  padding-top: 30px;
+}
+.archive .tag-previews .tag-container h3 {
+  text-transform: uppercase;
+}
+.archive .tag-previews .tag-container ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.archive .tag-previews .tag-container ul li {
+  width: 30%;
+}

@@ -6,8 +6,8 @@
   */
 get_header(); ?>
 
-<main>
-
+<main class="container">
+  <?php get_template_part('/template-parts/page-content');?>
 </main>
 
 <?php get_footer(); ?>

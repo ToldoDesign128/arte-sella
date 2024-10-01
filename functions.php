@@ -114,5 +114,8 @@ add_action('pre_get_posts', 'includi_cpt_in_archivio_tag');
 require dirname(__FILE__) . '/functions-parts/cpt-eventi.php';
 require dirname(__FILE__) . '/functions-parts/cpt-opere.php';
 require dirname(__FILE__) . '/functions-parts/cpt-sponsor.php';
+require dirname(__FILE__) . '/functions-parts/cpt-struttura.php';
 
+// Functions Parts
 require dirname(__FILE__) . '/functions-parts/ajax.php';
+require dirname(__FILE__) . '/functions-parts/custom-header.php';

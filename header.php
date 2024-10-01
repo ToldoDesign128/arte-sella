@@ -26,3 +26,17 @@
 </head>
 
 <body <?php body_class(); ?>>
+
+    <header class="container">
+        <nav>
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'primary',   // La tua posizione del menu
+                'walker' => new My_Walker_Nav_Menu(),  // Il walker personalizzato
+                'container' => false,            // Disattiva il div contenitore
+                'items_wrap' => '<ul class="%2$s">%3$s</ul>',  // Modifica l'output dell'elemento ul
+            ));
+
+            ?>
+        </nav>
+    </header>

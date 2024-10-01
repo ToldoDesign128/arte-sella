@@ -1,0 +1,179 @@
+.b-100{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @media #{$lg} {
+        padding: 20px 30px;
+    }
+
+    @media #{$xxl} {
+        padding: 30px 40px;
+    }
+
+    &__text{
+        width: 100%;
+    }
+}
+
+.b-75-25{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @media #{$lg} {
+        padding: 20px 30px;
+    }
+
+    @media #{$xxl} {
+        padding: 30px 40px;
+    }
+
+    &__text{
+        width: 100%;
+
+        @media #{$lg} {
+            width: 75%;
+        }
+    }
+
+    &__img{
+        width: 100%;
+        height: 100%;
+
+        @media #{$lg} {
+            width: 25%;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.b-50-50{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @media #{$lg} {
+        padding: 20px 30px;
+    }
+
+    @media #{$xxl} {
+        padding: 30px 40px;
+    }
+
+    &__text{
+        width: 100%;
+
+        @media #{$lg} {
+            width: 50%;
+        }
+    }
+
+    &__img{
+        width: 100%;
+        height: 100%;
+
+        @media #{$lg} {
+            width: 50%;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.b-25-75{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @media #{$lg} {
+        padding: 20px 30px;
+    }
+
+    @media #{$xxl} {
+        padding: 30px 40px;
+    }
+
+    &__text{
+        width: 100%;
+
+        @media #{$lg} {
+            width: 25%;
+        }
+    }
+
+    &__img{
+        width: 100%;
+        height: 100%;
+
+        @media #{$lg} {
+            width: 75%;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}
+
+.linea{
+    width: 100%;
+    padding: 20px 0;
+    span{
+        height: 1px;
+        display: block;
+        background-color: black;
+    }
+}
+
+.separatore-s{
+    height: 20px;
+
+    @media #{$lg} {
+        height: 30px;
+    }
+    @media #{$xxl} {
+        height: 40px;
+    }
+}
+
+.separatore-m{
+    height: 40px;
+
+    @media #{$lg} {
+        height: 60px;
+    }
+    @media #{$xxl} {
+        height: 80px;
+    }
+}
+
+.separatore-l{
+    height: 80px;
+
+    @media #{$lg} {
+        height: 120px;
+    }
+    @media #{$xxl} {
+        height: 160px;
+    }
+}

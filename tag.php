@@ -44,34 +44,42 @@ get_header(); ?>
     <section class="tag-previews">
         <h2>Contenuti per tag</h2>
         <?php
-        $tags = get_tags();
-        foreach ($tags as $tag) :
-            $tag_link = get_tag_link($tag->term_id);
-            $args = array(
-                'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
-                'tag_id' => $tag->term_id,
-                'posts_per_page' => 5 // Limita i post mostrati
-            );
-            $tag_query = new WP_Query($args);
-            if ($tag_query->have_posts()) : ?>
-                <div class="tag-container">
+        // Recupera i tag selezionati con ACF
+        $selected_tags = get_field('filtro_tag_archivio'); // Sostituisci 'acf_field_name' con il nome del tuo campo ACF
 
-                    <h3><?php echo $tag->name; ?></h3>
-                    <ul>
-                        <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
-                            <li>
-                                <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                <span class="content-type">
-                                    <?php echo get_content_type_label(get_post_type()); ?>
-                                </span>
-                            </li>
-                        <?php endwhile; ?>
-                    </ul>
-                </div>
-        <?php endif;
-            wp_reset_postdata();
-        endforeach; ?>
+        if ($selected_tags) :
+            foreach ($selected_tags as $tag) :
+                $tag_link = get_tag_link($tag->term_id);
+                $args = array(
+                    'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
+                    'tag_id' => $tag->term_id,
+                    'posts_per_page' => 5 // Limita i post mostrati
+                );
+                $tag_query = new WP_Query($args);
+                if ($tag_query->have_posts()) : ?>
+                    <div class="tag-container">
+                        <h3><?php echo esc_html($tag->name); ?></h3>
+                        <ul>
+                            <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
+                                <li>
+                                    <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                    <span class="content-type">
+                                        <?php echo get_content_type_label(get_post_type()); ?>
+                                    </span>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
+        <?php
+                endif;
+                wp_reset_postdata();
+            endforeach;
+        else :
+            echo '<p>Nessun tag selezionato.</p>';
+        endif;
+        ?>
     </section>
+
 
     <!-- Sezione contenuti in evidenza -->
     <section class="featured-content">
