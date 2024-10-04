@@ -87,6 +87,8 @@ function add_theme_scripts()
 
 	wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array('jquery'), 1.1, true);
 
+	wp_enqueue_script('my-swiper', get_template_directory_uri() . '/assets/js/swiper.js', array(), 1, true);
+
 	wp_enqueue_script('scripts', get_template_directory_uri() . '/scripts.js', array('jquery'), 1.1, true);
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');

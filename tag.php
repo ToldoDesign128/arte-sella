@@ -90,7 +90,7 @@ get_header(); ?>
             'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
             'meta_query' => array(
                 array(
-                    'key' => 'in_evidenza',
+                    'key' => 'in_evidenza_archivio',
                     'value' => '1',
                     'compare' => '=='
                 )

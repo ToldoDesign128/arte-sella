@@ -37,7 +37,7 @@ function sponsor()
             'capability_type'       => 'post',
             'hierarchical'          => false,
             'show_in_rest'          => false, // Gutemberg disattivato
-            'supports'              => array('title', 'thumbnail', 'editor') // Aggiungi 'editor' se necessario
+            'supports'              => array('title', 'thumbnail') // Aggiungi 'editor' se necessario
         )
     );
     flush_rewrite_rules(); // Sposta flush_rewrite_rules fuori dall'array
