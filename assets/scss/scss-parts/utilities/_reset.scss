@@ -7,6 +7,12 @@
 }
 
 html,
+body{
+  width: 100vw;
+  overflow-x: clip;
+}
+
+html,
 body,
 div,
 span,

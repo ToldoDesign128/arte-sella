@@ -79,6 +79,7 @@ function remove_content_editor()
 	remove_post_type_support('page', 'editor');
 }
 
+// Style and script
 function add_theme_scripts()
 {
 	wp_enqueue_style('swiper-style', "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
@@ -93,6 +94,7 @@ function add_theme_scripts()
 }
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
+// Ajax
 function enqueue_custom_ajax_search_script() {
     wp_enqueue_script('custom-ajax-search', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), null, true);
 
@@ -110,6 +112,22 @@ function includi_cpt_in_archivio_tag($query) {
 }
 add_action('pre_get_posts', 'includi_cpt_in_archivio_tag');
 
+// Content Label
+function get_content_type_label($post_type)
+{
+    switch ($post_type) {
+        case 'post':
+            return 'News';
+        case 'opere':
+            return 'Opera';
+        case 'eventi':
+            return 'Evento';
+        case 'sponsor':
+            return 'Sponsor';
+        default:
+            return '';
+    }
+}
 
 
 //CPT

@@ -5,22 +5,6 @@
   *
   */
 
-function get_content_type_label($post_type)
-{
-    switch ($post_type) {
-        case 'post':
-            return 'News';
-        case 'opere':
-            return 'Opera';
-        case 'eventi':
-            return 'Evento';
-        case 'sponsor':
-            return 'Sponsor';
-        default:
-            return '';
-    }
-}
-
 get_header(); ?>
 
 <main class="archive">

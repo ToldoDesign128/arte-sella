@@ -5,7 +5,7 @@ if (have_rows('contenuto_pagina')):
         // Blocco 100
         if (get_row_layout() == 'blocco_100'): ?>
 
-            <section class="b-100">
+            <section class="b-100 container">
                 <div class="b-100__text">
                     <?php the_sub_field('testo_blocco_100'); ?>
                 </div>
@@ -16,7 +16,7 @@ if (have_rows('contenuto_pagina')):
         elseif (get_row_layout() == 'immagine_100'):
             $image_100 = get_sub_field('immagine_blocco_100'); ?>
 
-            <section class="img-100">
+            <section class="img-100 container">
                 <img src="<?php echo esc_url($image_100['url']); ?>" alt="<?php echo esc_attr($image_100['alt']); ?>" />
             </section>
 
@@ -24,7 +24,7 @@ if (have_rows('contenuto_pagina')):
         // Blocco 75 / 25
         elseif (get_row_layout() == 'blocco_75_25'): ?>
 
-            <section class="b-75-25">
+            <section class="b-75-25 container">
 
                 <?php if (have_rows('selettore_testoimmagine_75_25')):
 
@@ -61,7 +61,7 @@ if (have_rows('contenuto_pagina')):
         // Blocco 50 / 50
         elseif (get_row_layout() == 'blocco_50_50'): ?>
 
-            <section class="b-50-50">
+            <section class="b-50-50 container">
 
                 <?php if (have_rows('selettore_testoimmagine_50_50')):
 
@@ -98,7 +98,7 @@ if (have_rows('contenuto_pagina')):
         // Blocco 25 / 75
         elseif (get_row_layout() == 'blocco_25_75'): ?>
 
-            <section class="b-25-75">
+            <section class="b-25-75 container">
 
                 <?php if (have_rows('selettore_testoimmagine_25_75')):
 
@@ -136,7 +136,7 @@ if (have_rows('contenuto_pagina')):
         // Blocco 33 / 33 / 33
         elseif (get_row_layout() == 'blocco_33_33_33'): ?>
 
-            <section class="b-33">
+            <section class="b-33 container">
 
                 <?php if (have_rows('selettore_testoimmagine_33_33_33')):
 
@@ -177,7 +177,7 @@ if (have_rows('contenuto_pagina')):
             $linea = get_sub_field('attiva_linea'); ?>
 
             <?php if ($linea): ?>
-                <section class="linea">
+                <section class="linea container">
                     <span></span>
                 </section>
             <?php endif; ?>
@@ -214,21 +214,21 @@ if (have_rows('contenuto_pagina')):
 
                     <ul class="slider__list swiper-wrapper">
 
-                    <?php
-                    // Loop through rows.
-                    while (have_rows('testo_immagine_repeater')) : the_row();
+                        <?php
+                        // Loop through rows.
+                        while (have_rows('testo_immagine_repeater')) : the_row();
 
-                        // Load sub field value.
-                        $img_value = get_sub_field('immagine_repeater'); ?>
+                            // Load sub field value.
+                            $img_value = get_sub_field('immagine_repeater'); ?>
 
-                        <li class="slider__list__item swiper-slide">
-                            <div><?php echo esc_html( the_sub_field('testo_repeater')); ?></div>
-                            <img src="<?php echo esc_url($img_value['url']); ?>" alt="<?php echo esc_attr($img_value['alt']); ?>" />
-                        </li>
+                            <li class="slider__list__item swiper-slide">
+                                <div class="slider__list__item__text"><?php echo esc_html(the_sub_field('testo_repeater')); ?></div>
+                                <img src="<?php echo esc_url($img_value['url']); ?>" alt="<?php echo esc_attr($img_value['alt']); ?>" />
+                            </li>
 
-                    <?php
-                    // End loop.
-                    endwhile; ?>
+                        <?php
+                        // End loop.
+                        endwhile; ?>
 
                     </ul>
 
@@ -237,7 +237,96 @@ if (have_rows('contenuto_pagina')):
             <?php
             endif; ?>
 
-        <?php
+            <?php
+        // Mostra contenuti relativi ai Tag
+        elseif (get_row_layout() == 'collegamento_a_tag'):
+            $selected_tags = get_sub_field('filtro_tag'); // Sostituisci con il nome del campo
+            if ($selected_tags):
+
+                // Query per filtrare i post e i custom post type in base ai tag selezionati
+                $args = array(
+                    'post_type' => array('post', 'opere', 'eventi', 'sponsor'), // Sostituisci con i tuoi CPT
+                    'tax_query' => array(
+                        'relation' => 'AND', // Cambia se necessario
+                        array(
+                            'taxonomy' => 'post_tag',
+                            'field'    => 'term_id',
+                            'terms'    => $selected_tags,
+                        ),
+                    ),
+                    'meta_query' => array(
+                        array(
+                            'key' => 'in_evidenza_home',
+                            'value' => '1',
+                            'compare' => '=='
+                        )
+                    )
+                );
+                $query = new WP_Query($args);
+                if ($query->have_posts()): ?>
+
+                    <section class="tag-filtered-posts container">
+                        <ul>
+
+                            <?php while ($query->have_posts()): $query->the_post(); ?>
+
+                                <li>
+                                    <a href="<?php the_permalink(); ?>">
+                                        <div class="post-img">
+                                            <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                                        </div>
+                                        <div class="post-title">
+                                            <?php the_title(); ?>
+                                        </div>
+                                        <span class="post-type">
+                                            <?php echo get_content_type_label(get_post_type()); ?>
+                                        </span>
+                                    </a>
+                                </li>
+
+                            <?php endwhile; ?>
+
+                        </ul>
+                    </section>
+
+                <?php else: ?>
+                    <p>Nessun contenuto trovato per i tag selezionati.</p>
+                <?php endif;
+                // Ripristina la query originale
+                wp_reset_postdata();
+            endif;
+
+        // Verifica se il layout corrente è quello del Post Object
+        elseif (get_row_layout() == 'sponsor_repeater'):
+
+            // Recupera i post selezionati
+            $posts = get_sub_field('selettore_sponsor'); // Sostituisci con il nome del campo
+
+            if ($posts):
+                ?>
+
+                <section class="sponsor-field container">
+                    <ul>
+
+                        <?php foreach ($posts as $post): ?>
+                            <?php setup_postdata($post); ?>
+
+                            <li>
+                                <div class="post-img">
+                                    <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                                </div>
+                                <h2 class="post-title"><?php the_title(); ?></h2>
+                            </li>
+
+                        <?php endforeach; ?>
+
+                    </ul>
+                </section>
+
+            <?php
+                wp_reset_postdata();
+            endif;
+
         // Gallery
         elseif (get_row_layout() == 'gallery'):
 
@@ -246,7 +335,7 @@ if (have_rows('contenuto_pagina')):
             $size = 'full'; // (thumbnail, medium, large, full or custom size)
             if ($images): ?>
 
-                <section class="gallery SwiperGallery">
+                <section class="gallery SwiperGallery container">
                     <ul class="gallery__list swiper-wrapper">
 
                         <?php foreach ($images as $image): ?>

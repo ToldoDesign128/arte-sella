@@ -6,7 +6,7 @@
   */
 get_header(); ?>
 
-<main class="container">
+<main>
   <?php get_template_part('/template-parts/page-content');?>
 </main>
 
