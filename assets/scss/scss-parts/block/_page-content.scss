@@ -22,8 +22,11 @@
   width: 100%;
   height: auto;
   padding: 20px;
+  overflow: clip;
+  aspect-ratio: 1;
 
   @media #{$lg} {
+    aspect-ratio: 16/9;
     padding: 20px 30px;
   }
 
@@ -32,8 +35,10 @@
   }
 
   img {
-    display: block;
+    max-width: 100%;
+    max-height: 100%;
     width: 100%;
+    display: block;
     object-fit: cover;
   }
 }
@@ -47,6 +52,7 @@
   gap: 20px;
 
   @media #{$lg} {
+    gap: 30px;
     padding: 20px 30px;
   }
 
@@ -58,10 +64,10 @@
     width: 100%;
 
     @media #{$lg} {
-      width: calc(75% - 10px);
+      width: calc(75% - 15px);
 
       &:last-child {
-        width: calc(25% - 10px);
+        width: calc(25% - 15px);
       }
     }
   }
@@ -76,6 +82,7 @@
   gap: 20px;
 
   @media #{$lg} {
+    gap: 30px;
     padding: 20px 30px;
   }
 
@@ -87,7 +94,7 @@
     width: 100%;
 
     @media #{$lg} {
-      width: calc(50% - 10px);
+      width: calc(50% - 15px);
     }
   }
 }
@@ -101,6 +108,7 @@
   gap: 20px;
 
   @media #{$lg} {
+    gap: 30px;
     padding: 20px 30px;
   }
 
@@ -112,10 +120,10 @@
     width: 100%;
 
     @media #{$lg} {
-      width: calc(25% - 10px);
+      width: calc(25% - 15px);
 
       &:last-child {
-        width: calc(75% - 10px);
+        width: calc(75% - 15px);
       }
     }
   }
@@ -129,6 +137,7 @@
   gap: 20px;
 
   @media #{$lg} {
+    gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     padding: 20px 30px;
   }
@@ -139,6 +148,19 @@
 
   &__col {
     width: 100%;
+
+    &__img{
+      aspect-ratio: 1;
+      overflow: clip;
+
+      img{
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
   }
 }
 
@@ -328,7 +350,6 @@
   }
 }
 
-
 .title,
 h1 {
   text-transform: uppercase;
@@ -346,10 +367,10 @@ h1 {
   background-color: $primary;
   padding: 5px;
   display: inline-block;
-}
 
-.subtitle:last-of-type {
-  margin-bottom: 32px;
+  &:last-of-type {
+    margin-bottom: 32px;
+  }
 }
 
 .thumbnail {
@@ -357,8 +378,8 @@ h1 {
 }
 
 .tag {
-  color: #FFFFFF;
-  background-color: #66CC99;
+  color: #ffffff;
+  background-color: #66cc99;
   padding: 5px;
   text-transform: capitalize;
   margin-right: 4px;
@@ -379,7 +400,7 @@ h1 {
 }
 
 .slide-text {
-  background-color: #66CC99;
+  background-color: #66cc99;
   padding: 5px;
   margin-right: 4px;
   text-decoration: none;
@@ -394,7 +415,7 @@ h1 {
 }
 
 .teaser-date {
-  background-color: #66CC99;
+  background-color: #66cc99;
   padding: 5px;
   margin-right: 4px;
   text-decoration: none;
@@ -416,16 +437,4 @@ h1 {
 .SwiperGallery {
   margin-top: 3rem;
   margin-bottom: 3rem;
-}
-
-//per ora li ho messi generali, in caso poi aggiungere la classe .block-100 per targettizare solo il contenuto dei wysisyg del flex container
-h2 {
-  font-size: 1.6em;
-  line-height: 1.4em;
-  font-weight: 600;
-}
-
-p {
-  font-size: 1.3em;
-  line-height: 200%;
 }

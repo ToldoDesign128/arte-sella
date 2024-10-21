@@ -27,16 +27,26 @@
 
 <body <?php body_class(); ?>>
 
-    <header class="container">
-        <nav>
-            <?php
-            wp_nav_menu(array(
-                'theme_location' => 'primary',   // La tua posizione del menu
-                'walker' => new My_Walker_Nav_Menu(),  // Il walker personalizzato
-                'container' => false,            // Disattiva il div contenitore
-                'items_wrap' => '<ul class="%2$s">%3$s</ul>',  // Modifica l'output dell'elemento ul
-            ));
+    <header class="header">
+        <div class="header-wrap container">
+            <a href="<?php echo home_url(); ?>" class="header-logo">
+                <img src="<?php echo get_template_directory_uri() . '/assets/img/artesella-logo.jpg'; ?>" alt="Logo">
+            </a>
+            <nav>
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',   // La tua posizione del menu
+                    'walker' => new My_Walker_Nav_Menu(),  // Il walker personalizzato
+                    'container' => false,            // Disattiva il div contenitore
+                    'items_wrap' => '<ul class="%2$s">%3$s</ul>',  // Modifica l'output dell'elemento ul
+                ));
 
-            ?>
-        </nav>
+                ?>
+            </nav>
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>

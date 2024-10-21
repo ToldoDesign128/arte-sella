@@ -336,7 +336,7 @@ if (have_rows('contenuto_pagina')):
             if ($images): ?>
 
                 <section class="gallery SwiperGallery container">
-                    <ul class="gallery__list swiper-wrapper">
+                    <ul class="gallery__list swiper-wrapper" id="hgblu-gallery">
 
                         <?php foreach ($images as $image): ?>
 
