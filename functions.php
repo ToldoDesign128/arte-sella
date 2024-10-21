@@ -84,9 +84,13 @@ function add_theme_scripts()
 {
 	wp_enqueue_style('swiper-style', "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
 
+	// wp_enqueue_style('lightbox-style', "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.min.css");
+
 	wp_enqueue_style('style', get_stylesheet_uri());
 
 	wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array('jquery'), 1.1, true);
+
+	wp_enqueue_script('lightbox-script', 'https://cdn.jsdelivr.net/npm/fslightbox@3.4.2/index.min.js', array('jquery'), 3.4, true);
 
 	wp_enqueue_script('my-swiper', get_template_directory_uri() . '/assets/js/swiper.js', array(), 1, true);
 
