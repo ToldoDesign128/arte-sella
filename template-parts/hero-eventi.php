@@ -4,7 +4,8 @@ if (have_posts()) {
         the_post();
         $title = get_the_title();
         $subtitle = get_field('sottotitolo');
-        $date = get_field('data_evento');
+        $date_inizio = get_field('data_evento_inizio');
+        $date_fine = get_field('data_evento_fine');
         $place = get_field('luogo_evento');
         $time = get_field('ore');
         $thumb_url = get_the_post_thumbnail_url();
@@ -25,15 +26,25 @@ if (have_posts()) {
         <?php endif; ?>
 
         <div class="info-box">
-            <span class="title-2">
-                <?php echo $date ?>
-            </span>
-            <span class="title-2">
-                <?php echo $place ?>
-            </span>
-            <span class="title-2">
-                <?php echo $time ?>
-            </span>
+            <?php if ($date_fine) : ?>
+                <span class="title-2">
+                    Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                </span>
+            <?php else : ?>
+                <span class="title-2">
+                    <?php echo $date_inizio ?>
+                </span>
+            <?php endif; ?>
+            <?php if ($place) : ?>
+                <span class="title-2">
+                    <?php echo $place ?>
+                </span>
+            <?php endif;
+            if ($time) : ?>
+                <span class="title-2">
+                    <?php echo $time ?>
+                </span>
+            <?php endif; ?>
         </div>
         <div class="image-box">
             <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">

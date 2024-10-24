@@ -29,7 +29,7 @@ function struttura()
             'menu_position'         => 23,
             'menu_icon'             => 'dashicons-plus-alt',
             'rewrite'               => array(
-                'slug'              => 'struttura',
+                'slug'              => 'ospitalita',
                 'with-front'        => false,
             ),
             'has_archive'           => false,

@@ -24,13 +24,30 @@ get_header(); ?>
 
     <div class="loop-eventi container">
       <ul>
-        <?php if ($custom_loop->have_posts()) : while ($custom_loop->have_posts()) : $custom_loop->the_post(); ?>
+        <?php if ($custom_loop->have_posts()) : while ($custom_loop->have_posts()) : $custom_loop->the_post();
+
+            $date_inizio = get_field('data_evento_inizio');
+            $date_fine = get_field('data_evento_fine');
+        ?>
 
             <li>
               <a href="<?php the_permalink(); ?>">
-                <div class="event-date title-4 bold">
-                  <span><?php echo get_field('data_evento') ?></span>
-                </div>
+                <?php if ($date_inizio) : ?>
+                  <div class="event-date title-4 bold">
+
+                    <?php if ($date_fine) : ?>
+                      <span>
+                        Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                      </span>
+                    <?php else : ?>
+                      <span>
+                        <?php echo $date_inizio ?>
+                      </span>
+                    <?php endif; ?>
+
+                  </div>
+                <?php endif; ?>
+                
                 <div class="post-img">
                   <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                 </div>

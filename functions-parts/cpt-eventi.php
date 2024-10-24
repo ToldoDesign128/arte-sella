@@ -29,7 +29,7 @@ function eventi()
             'menu_position'         => 22,
             'menu_icon'             => 'dashicons-plus-alt',
             'rewrite'               => array(
-                'slug'              => 'eventi',
+                'slug'              => 'calendario',
                 'with-front'        => false,
             ),
             'has_archive'           => false,

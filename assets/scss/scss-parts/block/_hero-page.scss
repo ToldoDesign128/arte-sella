@@ -48,10 +48,8 @@
     margin-top: 2rem;
     width: 100%;
     overflow: clip;
-    aspect-ratio: 1;
 
     @media #{$lg} {
-      aspect-ratio: 16/9;
       margin-top: 3rem;
     }
 

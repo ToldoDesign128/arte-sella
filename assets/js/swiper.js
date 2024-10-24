@@ -12,7 +12,7 @@ var SwiperGallery = new Swiper(".SwiperGallery", {
       slidesPerView: 2,
     },
     1280: {
-      slidesPerView: 3.5,
+      slidesPerView: 3,
     }
   }
 });
