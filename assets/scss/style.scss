@@ -31,8 +31,12 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 // Block
 @import 'scss-parts/block/header';
+@import 'scss-parts/block/footer';
 @import 'scss-parts/block/page-content';
 @import 'scss-parts/block/hero-page';
 
 // Page
 @import 'scss-parts/page/archive';
+@import 'scss-parts/page/calendario';
+@import 'scss-parts/page/ospitalita';
+@import 'scss-parts/page/sponsor';

@@ -1,24 +1,45 @@
-.title-1{
-    font-size: 4em;
-    line-height: 1.2em;
-}
-.title-2{
-    font-size: 1.6em;
-    line-height: 1.4em;
-}
-.title-3{
-    font-size: 1.4em;
-    line-height: 1.4em;
-}
-.title-4{
-    font-size: 1.3em;
-    line-height: 1.5em;
-}
-.text-body{
-    font-size: 1.2em;
-    line-height: 1.6em;
+.title-1,
+h1 {
+  text-transform: uppercase;
+  font-size: 4em;
+  line-height: 1.2em;
 }
 
-.bold{
-    font-weight: 600;
+.title-2,
+h2 {
+  font-size: 1.6em;
+  line-height: 1.4em;
+}
+
+.title-3,
+h3 {
+  font-size: 1.4em;
+  line-height: 1.4em;
+}
+
+.title-4,
+h4 {
+  font-size: 1.3em;
+  line-height: 1.5em;
+}
+
+.title-5,
+h5 {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.text-body,
+p,
+a,
+ul,
+ol,
+li {
+  font-size: 1em;
+  line-height: 1.6em;
+}
+
+.bold,
+strong {
+  font-weight: 600;
 }

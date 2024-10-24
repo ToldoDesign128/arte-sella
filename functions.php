@@ -84,7 +84,7 @@ function add_theme_scripts()
 {
 	wp_enqueue_style('swiper-style', "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
 
-	// wp_enqueue_style('lightbox-style', "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.min.css");
+	wp_enqueue_style('lightbox-style', "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.min.css");
 
 	wp_enqueue_style('style', get_stylesheet_uri());
 

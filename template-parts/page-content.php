@@ -177,7 +177,7 @@ if (have_rows('contenuto_pagina')):
             $linea = get_sub_field('attiva_linea'); ?>
 
             <?php if ($linea): ?>
-                <section class="linea container">
+                <section class="linea">
                     <span></span>
                 </section>
             <?php endif; ?>
@@ -210,7 +210,7 @@ if (have_rows('contenuto_pagina')):
 
             if (have_rows('testo_immagine_repeater')): ?>
 
-                <section class="slider SwiperTextImg">
+                <section class="container slider SwiperTextImg">
 
                     <ul class="slider__list swiper-wrapper">
 
@@ -253,15 +253,9 @@ if (have_rows('contenuto_pagina')):
                             'field'    => 'term_id',
                             'terms'    => $selected_tags,
                         ),
-                    ),
-                    'meta_query' => array(
-                        array(
-                            'key' => 'in_evidenza_home',
-                            'value' => '1',
-                            'compare' => '=='
-                        )
                     )
                 );
+
                 $query = new WP_Query($args);
                 if ($query->have_posts()): ?>
 
@@ -269,17 +263,16 @@ if (have_rows('contenuto_pagina')):
                         <ul>
 
                             <?php while ($query->have_posts()): $query->the_post(); ?>
-
                                 <li>
                                     <a href="<?php the_permalink(); ?>">
                                         <div class="post-img">
                                             <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                         </div>
-                                        <div class="post-title">
+                                        <div class="post-title title-2 bold">
                                             <?php the_title(); ?>
                                         </div>
-                                        <span class="post-type">
-                                            <?php echo get_content_type_label(get_post_type()); ?>
+                                        <span class="post-type text-body">
+                                            <?php echo get_field('sottotitolo');?>
                                         </span>
                                     </a>
                                 </li>
@@ -290,11 +283,12 @@ if (have_rows('contenuto_pagina')):
                     </section>
 
                 <?php else: ?>
-                    <p>Nessun contenuto trovato per i tag selezionati.</p>
+                    <p class="container">Nessun contenuto trovato per i tag selezionati.</p>
                 <?php endif;
                 // Ripristina la query originale
                 wp_reset_postdata();
             endif;
+
 
         // Verifica se il layout corrente è quello del Post Object
         elseif (get_row_layout() == 'sponsor_repeater'):
@@ -315,7 +309,7 @@ if (have_rows('contenuto_pagina')):
                                 <div class="post-img">
                                     <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                 </div>
-                                <h2 class="post-title"><?php the_title(); ?></h2>
+                                <h2 class="post-title text-body"><?php the_title(); ?></h2>
                             </li>
 
                         <?php endforeach; ?>
@@ -341,7 +335,9 @@ if (have_rows('contenuto_pagina')):
                         <?php foreach ($images as $image): ?>
 
                             <li class="gallery__list__item swiper-slide">
-                                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                <a data-fslightbox="gallery" href="<?php echo esc_url($image['url']); ?>" data-pswp-width="<?php echo $image['width'] ?>" data-pswp-height="<?php echo $image['height'] ?>">
+                                    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
+                                </a>
                             </li>
 
                         <?php endforeach; ?>
@@ -358,3 +354,16 @@ if (have_rows('contenuto_pagina')):
     endwhile;
 // Do something...
 endif; ?>
+
+<script type="text/javascript">
+    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe/dist/photoswipe-lightbox.esm.js';
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#hgblu-gallery',
+        children: 'a',
+        pswpModule: () => import('https://unpkg.com/photoswipe'),
+    });
+
+    lightbox.init();
+    singleLightbox.init();
+</script>

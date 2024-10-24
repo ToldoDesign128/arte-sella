@@ -7,7 +7,7 @@ if (have_posts()) {
         $author = get_field('autore_opera');
         $year = get_field('anno_opera');
         $subtitle = get_field('sottotitolo');
-        $tags = get_the_tags();
+        $content = apply_filters('the_content', get_the_content());
     }
 }
 ?>
@@ -28,17 +28,11 @@ if (have_posts()) {
                 <?php echo $author ?>, <?php echo $year ?>
             </span>
         </div>
-        <?php if ($tags) : ?>
-            <div class="tag-box">
-                <?php foreach ($tags as $tag) { ?>
-                    <span class="title-2">
-                        <?php echo $tag->name;?>
-                    </span>
-                <?php } ?>
-            </div>
-        <?php endif; ?>
         <div class="image-box">
             <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">
+        </div>
+        <div class="post-content">
+            <?php echo $content ?>
         </div>
     </div>
 </div>

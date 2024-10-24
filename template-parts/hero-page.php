@@ -10,9 +10,9 @@ if (have_posts()) {
 }
 ?>
 
-<!-- Hero News -->
+<!-- Hero Page -->
 <div class="container">
-    <div class="hero-news">
+    <div class="hero-page">
         <h1 class="title-1 bold">/ <?php echo $title ?></h1>
 
         <?php if ($subtitle) : ?>
@@ -20,12 +20,22 @@ if (have_posts()) {
                 <?php echo $subtitle ?>
             </h2>
         <?php endif; ?>
-        
-        <div class="image-box">
-            <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">
-        </div>
+    </div>
+</div>
+
+<?php if ($subtitle) : ?>
+    <span class="hero-page-divider"></span>
+<?php endif; ?>
+
+<?php if ($thumb_url || $content) : ?>
+    <div class="hero-page-content container">
+        <?php if ($thumb_url) : ?>
+            <div class="image-box">
+                <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">
+            </div>
+        <?php endif; ?>
         <div class="post-content">
             <?php echo $content ?>
         </div>
     </div>
-</div>
+<?php endif; ?>
