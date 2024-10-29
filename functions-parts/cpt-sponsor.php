@@ -43,3 +43,25 @@ function sponsor()
     flush_rewrite_rules(); // Sposta flush_rewrite_rules fuori dall'array
 }
 add_action('init', 'sponsor');
+
+//aggiunta categorie
+function sponsor_taxonomies()
+{
+    register_taxonomy(
+        'sponsor_tax',
+        'sponsor',
+        array(
+            'labels' => array(
+                'name' => 'Categorie',
+                'add_new_item' => 'Aggiungi nuova categoria',
+                'new_item_name' => "Nuova categoria"
+            ),
+            'show_ui' => true,
+            'show_tagcloud' => false,
+            'hierarchical' => true,
+            'show_admin_column' => true,
+            'show_in_rest' => true
+        )
+    );
+}
+add_action('init', 'sponsor_taxonomies', 0);

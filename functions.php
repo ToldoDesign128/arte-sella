@@ -27,7 +27,6 @@ if (!function_exists('arte_sella_setup')) :
 endif; // arte_sella_setup
 add_action('after_setup_theme', 'arte_sella_setup');
 
-
 // Custom logo
 function arte_sella_custom_logo_setup()
 {
@@ -84,9 +83,13 @@ function add_theme_scripts()
 {
 	wp_enqueue_style('swiper-style', "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css");
 
+	wp_enqueue_style('lightbox-style', "https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.min.css");
+
 	wp_enqueue_style('style', get_stylesheet_uri());
 
 	wp_enqueue_script('swiper-script', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array('jquery'), 1.1, true);
+
+	wp_enqueue_script('lightbox-script', 'https://cdn.jsdelivr.net/npm/fslightbox@3.4.2/index.min.js', array('jquery'), 3.4, true);
 
 	wp_enqueue_script('my-swiper', get_template_directory_uri() . '/assets/js/swiper.js', array(), 1, true);
 
@@ -95,40 +98,59 @@ function add_theme_scripts()
 add_action('wp_enqueue_scripts', 'add_theme_scripts');
 
 // Ajax
-function enqueue_custom_ajax_search_script() {
-    wp_enqueue_script('custom-ajax-search', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), null, true);
+function enqueue_custom_ajax_search_script()
+{
+	wp_enqueue_script('custom-ajax-search', get_template_directory_uri() . '/assets/js/ajax.js', array('jquery'), null, true);
 
-    // Localizza lo script AJAX
-    wp_localize_script('custom-ajax-search', 'ajaxurl', admin_url('admin-ajax.php'));
+	// Localizza lo script AJAX
+	wp_localize_script('custom-ajax-search', 'ajaxurl', admin_url('admin-ajax.php'));
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_ajax_search_script');
 
+// Filtro per aggiungere gli a capo
+function custom_content_format($content)
+{
+	return nl2br($content);
+}
+add_filter('the_content', 'custom_content_format');
 
 // Filtro per Tag
-function includi_cpt_in_archivio_tag($query) {
-    if ($query->is_tag() && $query->is_main_query()) {
-        $query->set('post_type', array('post', 'opere', 'eventi', 'sponsor')); // Aggiungi i CPT qui
-    }
+function includi_cpt_in_archivio_tag($query)
+{
+	if ($query->is_tag() && $query->is_main_query()) {
+		$query->set('post_type', array('post', 'opere', 'eventi', 'sponsor')); // Aggiungi i CPT qui
+	}
 }
 add_action('pre_get_posts', 'includi_cpt_in_archivio_tag');
 
 // Content Label
 function get_content_type_label($post_type)
 {
-    switch ($post_type) {
-        case 'post':
-            return 'News';
-        case 'opere':
-            return 'Opera';
-        case 'eventi':
-            return 'Evento';
-        case 'sponsor':
-            return 'Sponsor';
-        default:
-            return '';
-    }
+	switch ($post_type) {
+		case 'post':
+			return 'News';
+		case 'opere':
+			return 'Opera';
+		case 'eventi':
+			return 'Evento';
+		case 'sponsor':
+			return 'Sponsor';
+		default:
+			return '';
+	}
 }
 
+// ACF Option 
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title'    => 'Footer',
+        'menu_title'    => 'Footer',
+        'menu_slug'     => 'footer-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false
+    ));
+}
 
 //CPT
 require dirname(__FILE__) . '/functions-parts/cpt-eventi.php';

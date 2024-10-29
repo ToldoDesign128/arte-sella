@@ -16,18 +16,27 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
+
+// Font
+@import url('https://fonts.hgblu.com/?g=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 // Variabili
-@import '/assets/scss/scss-parts/variable/device';
-@import '/assets/scss/scss-parts/variable/base';
+@import 'scss-parts/variable/device';
+@import 'scss-parts/variable/base';
+@import 'scss-parts/variable/typo';
 
 // Utilities
-@import '/assets/scss/scss-parts/utilities/layout';
-@import '/assets/scss/scss-parts/utilities/reset';
+@import 'scss-parts/utilities/layout';
+@import 'scss-parts/utilities/reset';
 
 // Block
-@import '/assets/scss/scss-parts/block/header';
-@import '/assets/scss/scss-parts/block/page-content';
+@import 'scss-parts/block/header';
+@import 'scss-parts/block/footer';
+@import 'scss-parts/block/page-content';
+@import 'scss-parts/block/hero-page';
 
 // Page
-@import '/assets/scss/scss-parts/page/archive';
-
+@import 'scss-parts/page/archive';
+@import 'scss-parts/page/calendario';
+@import 'scss-parts/page/ospitalita';
+@import 'scss-parts/page/sponsor';

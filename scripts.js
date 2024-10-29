@@ -1,1 +1,1 @@
-var SwiperGallery=new Swiper(".SwiperGallery",{slidesPerView:3,spaceBetween:30}),SwiperTextImg=new Swiper(".SwiperTextImg",{slidesPerView:1,spaceBetween:30});
+jQuery(document).ready((function(){jQuery("#hamburgerBtn").click((function(){jQuery(this).toggleClass("hamburger-active"),jQuery(".header-panel").toggleClass("open-menu")}))}));

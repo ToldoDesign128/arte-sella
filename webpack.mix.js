@@ -3,7 +3,7 @@ let mix = require('laravel-mix');
 
 mix.sass('assets/scss/style.scss', 'style.css');
 
-mix.combine(['assets/js/animation.js', 'assets/js/interaction.js', 'assets/js/swiper.js'], 'scripts.js')
+mix.combine(['assets/js/animation.js', 'assets/js/interaction.js'], 'scripts.js')
   .minify('scripts.js');
 
 mix.webpackConfig({
