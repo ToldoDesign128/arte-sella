@@ -41,12 +41,12 @@ get_header(); ?>
                 $args = array(
                     'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
                     'tag_id' => $tag->term_id,
-                    'posts_per_page' => 5 // Limita i post mostrati
+                    'posts_per_page' => 9 // Limita i post mostrati
                 );
                 $tag_query = new WP_Query($args);
                 if ($tag_query->have_posts()) : ?>
                     <div class="tag-container">
-                        <h3><?php echo esc_html($tag->name); ?></h3>
+                        <h3 class="title-2"><?php echo esc_html($tag->name); ?></h3>
                         <ul>
                             <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
                                 <li>
@@ -54,7 +54,7 @@ get_header(); ?>
                                         <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                     </div>
                                     <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                    <span class="content-type">
+                                    <span class="content-type text-body">
                                         <?php echo get_content_type_label(get_post_type()); ?>
                                     </span>
                                 </li>
@@ -86,7 +86,7 @@ get_header(); ?>
                     'compare' => '=='
                 )
             ),
-            'posts_per_page' => 5
+            'posts_per_page' => 9
         );
         $featured_query = new WP_Query($args);
 

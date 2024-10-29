@@ -16,7 +16,7 @@ if (have_posts()) {
         <h1 class="title-1 bold">/ <?php echo $title ?></h1>
 
         <?php if ($subtitle) : ?>
-            <h2 class="title-2">
+            <h2 class="text-body">
                 <?php echo $subtitle ?>
             </h2>
         <?php endif; ?>
@@ -24,7 +24,7 @@ if (have_posts()) {
         <div class="image-box">
             <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">
         </div>
-        <div class="post-content">
+        <div class="post-content text-body">
             <?php echo $content ?>
         </div>
     </div>

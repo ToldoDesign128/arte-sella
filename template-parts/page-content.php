@@ -255,6 +255,7 @@ if (have_rows('contenuto_pagina')):
                 // Query per filtrare i post e i custom post type in base ai tag selezionati
                 $args = array(
                     'post_type' => array('post', 'opere', 'eventi', 'sponsor'), // Sostituisci con i tuoi CPT
+                    'posts_per_page' => -1,
                     'tax_query' => array(
                         'relation' => 'AND', // Cambia se necessario
                         array(
@@ -277,7 +278,7 @@ if (have_rows('contenuto_pagina')):
                                         <div class="post-img">
                                             <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                         </div>
-                                        <div class="post-title title-2 bold">
+                                        <div class="post-title title-3 bold">
                                             <?php the_title(); ?>
                                         </div>
                                         <span class="post-type text-body">
@@ -318,7 +319,7 @@ if (have_rows('contenuto_pagina')):
                                 <div class="post-img">
                                     <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                 </div>
-                                <h2 class="post-title text-body"><?php the_title(); ?></h2>
+                                <p class="post-title title-4"><?php the_title(); ?></p>
                             </li>
 
                         <?php endforeach; ?>

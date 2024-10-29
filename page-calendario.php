@@ -37,17 +37,21 @@ get_header(); ?>
 
                     <?php if ($date_fine) : ?>
                       <span>
-                        <?php echo $date_inizio ?> - <?php echo $date_fine ?>
+                        <?php
+                        echo substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5);
+                        ?>
                       </span>
                     <?php else : ?>
                       <span>
-                        <?php echo $date_inizio ?>
+                        <?php
+                        echo substr($date_inizio, 0, -5);
+                        ?>
                       </span>
                     <?php endif; ?>
 
                   </div>
                 <?php endif; ?>
-                
+
                 <div class="post-img">
                   <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                 </div>

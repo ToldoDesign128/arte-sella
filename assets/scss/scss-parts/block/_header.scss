@@ -22,6 +22,14 @@ header {
       z-index: 10;
       padding: 0 20px;
 
+      @media #{$lg} {
+        padding: 0 40px;
+      }
+
+      @media #{$xxl} {
+        padding: 0 60px;
+      }
+
       .header-logo {
         display: block;
         max-width: 200px;
@@ -125,6 +133,7 @@ header {
               flex-direction: column;
 
               li {
+                padding: 10px 0 0 0;
                 a {
                   text-decoration: none;
                   color: black;
@@ -182,5 +191,11 @@ header {
 
   @media #{$lg} {
     height: 130px;
+  }
+}
+
+.page-template-front-page{
+  .header-spacer{
+    display: none;
   }
 }
