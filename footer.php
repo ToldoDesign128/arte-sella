@@ -24,7 +24,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                         if (get_row_layout() == 'testo_footer_1'):
                             $text_footer_1 = get_sub_field('testo_footer'); ?>
 
-                            <p>
+                            <p class="footer-col__content__text text-body">
                                 <?php echo esc_html($text_footer_1); ?>
                             </p>
 
@@ -38,7 +38,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                                 $link_footer_1_title = $link_footer_1['title'];
                                 $link_footer_1_target = $link_footer_1['target'] ? $link_footer_1['target'] : '_self'; ?>
 
-                                <a href="<?php echo esc_url($link_footer_1_url); ?>" target="<?php echo esc_attr($link_footer_1_target); ?>" class="footer-col__content__link">
+                                <a href="<?php echo esc_url($link_footer_1_url); ?>" target="<?php echo esc_attr($link_footer_1_target); ?>" class="footer-col__content__link text-body">
                                     <?php echo esc_html($link_footer_1_title); ?>
                                 </a>
 
@@ -102,7 +102,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                         if (get_row_layout() == 'testo_footer_2'):
                             $text_footer_2 = get_sub_field('testo_footer'); ?>
 
-                            <p>
+                            <p class="footer-col__content__text text-body">
                                 <?php echo esc_html($text_footer_2); ?>
                             </p>
 
@@ -116,7 +116,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                                 $link_footer_2_title = $link_footer_2['title'];
                                 $link_footer_2_target = $link_footer_2['target'] ? $link_footer_2['target'] : '_self'; ?>
 
-                                <a href="<?php echo esc_url($link_footer_2_url); ?>" target="<?php echo esc_attr($link_footer_2_target); ?>" class="footer-col__content__link">
+                                <a href="<?php echo esc_url($link_footer_2_url); ?>" target="<?php echo esc_attr($link_footer_2_target); ?>" class="footer-col__content__link text-body">
                                     <?php echo esc_html($link_footer_2_title); ?>
                                 </a>
 
@@ -175,7 +175,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                         if (get_row_layout() == 'testo_footer_3'):
                             $text_footer_3 = get_sub_field('testo_footer'); ?>
 
-                            <p class="footer-col__content__text">
+                            <p class="footer-col__content__text text-body">
                                 <?php echo esc_html($text_footer_3); ?>
                             </p>
 
@@ -189,7 +189,7 @@ $titolo_3 = get_field('titolo_colonna_3', 'option');
                                 $link_footer_3_title = $link_footer_3['title'];
                                 $link_footer_3_target = $link_footer_3['target'] ? $link_footer_3['target'] : '_self'; ?>
 
-                                <a href="<?php echo esc_url($link_footer_3_url); ?>" target="<?php echo esc_attr($link_footer_3_target); ?>" class="footer-col__content__link">
+                                <a href="<?php echo esc_url($link_footer_3_url); ?>" target="<?php echo esc_attr($link_footer_3_target); ?>" class="footer-col__content__link text-body">
                                     <?php echo esc_html($link_footer_3_title); ?>
                                 </a>
 

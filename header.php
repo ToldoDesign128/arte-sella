@@ -29,7 +29,7 @@
 
     <header>
         <div class="header">
-            <div class="header-wrap container">
+            <div class="header-wrap">
                 <a href="<?php echo home_url(); ?>" class="header-logo">
                     <img src="<?php echo get_template_directory_uri() . '/assets/img/artesella-logo.jpg'; ?>" alt="Logo">
                 </a>

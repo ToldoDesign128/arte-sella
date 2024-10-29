@@ -82,6 +82,13 @@
             color: black;
           }
 
+          .plus{
+            display: block;
+            color: black;
+            font-size: 4rem;
+            line-height: 1;
+          }
+
           @media #{$lg} {
             &:hover {
               .post-img {

@@ -61,12 +61,6 @@ get_header(); ?>
                         <div class="post-img">
                           <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                         </div>
-                        <div class="post-title title-2 bold">
-                          <?php the_title(); ?>
-                        </div>
-                        <span class="post-subtitle text-body">
-                          <?php echo esc_html(get_field('sottotitolo')); ?>
-                        </span>
                       </a>
                     </li>
 
@@ -76,11 +70,6 @@ get_header(); ?>
                       <div class="post-img">
                         <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                       </div>
-                      <div class="post-title title-2 bold">
-                        <?php the_title(); ?>
-                      </div>
-                      <span class="post-subtitle text-body">
-                        <?php echo esc_html(get_field('sottotitolo')); ?>
                       </span>
                     </li>
 

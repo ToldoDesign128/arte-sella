@@ -20,28 +20,28 @@ if (have_posts()) {
         <h1 class="title-1 bold">/ <?php echo $title ?></h1>
 
         <?php if ($subtitle) : ?>
-            <h2 class="title-2">
+            <h2 class="text-body">
                 <?php echo $subtitle ?>
             </h2>
         <?php endif; ?>
 
         <div class="info-box">
             <?php if ($date_fine) : ?>
-                <span class="title-2">
+                <span class="title-2 text-body">
                     Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
                 </span>
             <?php else : ?>
-                <span class="title-2">
+                <span class="title-2 text-body">
                     <?php echo $date_inizio ?>
                 </span>
             <?php endif; ?>
             <?php if ($place) : ?>
-                <span class="title-2">
+                <span class="title-2 text-body">
                     <?php echo $place ?>
                 </span>
             <?php endif;
             if ($time) : ?>
-                <span class="title-2">
+                <span class="title-2 text-body">
                     <?php echo $time ?>
                 </span>
             <?php endif; ?>
@@ -49,7 +49,7 @@ if (have_posts()) {
         <div class="image-box">
             <img src="<?php echo $thumb_url ?>" alt="<?php echo $title ?>" width="100%" class="thumbnail">
         </div>
-        <div class="post-content">
+        <div class="post-content text-body">
             <?php echo $content ?>
         </div>
     </div>

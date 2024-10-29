@@ -37,17 +37,21 @@ get_header(); ?>
 
                     <?php if ($date_fine) : ?>
                       <span>
-                        Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                        <?php
+                        echo substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5);
+                        ?>
                       </span>
                     <?php else : ?>
                       <span>
-                        <?php echo $date_inizio ?>
+                        <?php
+                        echo substr($date_inizio, 0, -5);
+                        ?>
                       </span>
                     <?php endif; ?>
 
                   </div>
                 <?php endif; ?>
-                
+
                 <div class="post-img">
                   <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                 </div>
@@ -63,9 +67,28 @@ get_header(); ?>
                 <span class="post-info text-body">
                   <?php echo get_field('luogo_evento') ?>
                 </span>
+
+                <?php if ($date_inizio) : ?>
+                  <div class="post-info text-body">
+
+                    <?php if ($date_fine) : ?>
+                      <span>
+                        Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                      </span>
+                    <?php else : ?>
+                      <span>
+                        Il <?php echo $date_inizio ?>
+                      </span>
+                    <?php endif; ?>
+
+                  </div>
+                <?php endif; ?>
+
                 <span class="post-info text-body">
                   <?php echo get_field('ore') ?>
                 </span>
+
+                <span class="plus">+</span>
               </a>
             </li>
 
