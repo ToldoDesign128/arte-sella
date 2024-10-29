@@ -48,12 +48,31 @@ get_header(); ?>
 
                   <?php
                   $sponsor_link = get_field('link_sponsor');
-                  $sponsor_link_url = $sponsor_link['url'];
-                  $sponsor_link_title = $sponsor_link['title'];
-                  $sponsor_link_target = $sponsor_link['target'] ? $sponsor_link['target'] : '_self'; ?>
 
-                  <li>
-                    <a href="<?php echo $sponsor_link_url; ?>" target="<?php echo $sponsor_link_target; ?>">
+                  // Verifica se il campo $sponsor_link è compilato
+                  if ($sponsor_link) :
+                    $sponsor_link_url = $sponsor_link['url'];
+                    $sponsor_link_title = $sponsor_link['title'];
+                    $sponsor_link_target = $sponsor_link['target'] ? $sponsor_link['target'] : '_self';
+                  ?>
+
+                    <li>
+                      <a href="<?php echo esc_url($sponsor_link_url); ?>" target="<?php echo esc_attr($sponsor_link_target); ?>">
+                        <div class="post-img">
+                          <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                        </div>
+                        <div class="post-title title-2 bold">
+                          <?php the_title(); ?>
+                        </div>
+                        <span class="post-subtitle text-body">
+                          <?php echo esc_html(get_field('sottotitolo')); ?>
+                        </span>
+                      </a>
+                    </li>
+
+                  <?php else : ?>
+
+                    <li>
                       <div class="post-img">
                         <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                       </div>
@@ -61,10 +80,11 @@ get_header(); ?>
                         <?php the_title(); ?>
                       </div>
                       <span class="post-subtitle text-body">
-                        <?php echo get_field('sottotitolo'); ?>
+                        <?php echo esc_html(get_field('sottotitolo')); ?>
                       </span>
-                    </a>
-                  </li>
+                    </li>
+
+                  <?php endif; ?>
 
                 <?php endwhile;
                 wp_reset_postdata(); ?>
@@ -72,6 +92,7 @@ get_header(); ?>
                 <p><?php _e('Nessun post disponibile in questa categoria.'); ?></p>
               <?php endif; ?>
             </ul>
+
           </div>
 
         </div>

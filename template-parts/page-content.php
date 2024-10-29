@@ -7,7 +7,8 @@ if (have_rows('contenuto_pagina')):
 
             <section class="b-100 container">
                 <div class="b-100__text">
-                    <?php the_sub_field('testo_blocco_100'); ?>
+                    <?php $text_100 = get_sub_field('testo_blocco_100');
+                    echo nl2br($text_100); ?>
                 </div>
             </section>
 
@@ -34,7 +35,8 @@ if (have_rows('contenuto_pagina')):
 
                             <div class="b-75-25__col">
                                 <div class="b-75-25__col__text">
-                                    <?php the_sub_field('testo_blocco_75_25'); ?>
+                                    <?php $text_75 = get_sub_field('testo_blocco_75_25');
+                                    echo nl2br($text_75); ?>
                                 </div>
                             </div>
 
@@ -71,7 +73,8 @@ if (have_rows('contenuto_pagina')):
 
                             <div class="b-50-50__col">
                                 <div class="b-50-50__col__text">
-                                    <?php the_sub_field('testo_blocco_50_50'); ?>
+                                    <?php $text_50 = get_sub_field('testo_blocco_50_50');
+                                    echo nl2br($text_50); ?>
                                 </div>
                             </div>
 
@@ -109,7 +112,8 @@ if (have_rows('contenuto_pagina')):
 
                             <div class="b-25-75__col">
                                 <div class="b-25-75__col__text">
-                                    <?php the_sub_field('testo_blocco_25_75'); ?>
+                                    <?php $text_25 = get_sub_field('testo_blocco_25_75');
+                                    echo nl2br($text_25); ?>
                                 </div>
                             </div>
 
@@ -147,7 +151,8 @@ if (have_rows('contenuto_pagina')):
 
                             <div class="b-33__col">
                                 <div class="b-33__col__text">
-                                    <?php the_sub_field('testo_blocco_33_33_33'); ?>
+                                    <?php $text_33 = get_sub_field('testo_blocco_33_33_33');
+                                    echo nl2br($text_33); ?>
                                 </div>
                             </div>
 
@@ -222,7 +227,11 @@ if (have_rows('contenuto_pagina')):
                             $img_value = get_sub_field('immagine_repeater'); ?>
 
                             <li class="slider__list__item swiper-slide">
-                                <div class="slider__list__item__text"><?php echo esc_html(the_sub_field('testo_repeater')); ?></div>
+                                <?php if (get_sub_field('testo_repeater')) : ?>
+                                    <div class="slider__list__item__text">
+                                        <?php echo esc_html(the_sub_field('testo_repeater')); ?>
+                                    </div>
+                                <?php endif; ?>
                                 <img src="<?php echo esc_url($img_value['url']); ?>" alt="<?php echo esc_attr($img_value['alt']); ?>" />
                             </li>
 
@@ -272,7 +281,7 @@ if (have_rows('contenuto_pagina')):
                                             <?php the_title(); ?>
                                         </div>
                                         <span class="post-type text-body">
-                                            <?php echo get_field('sottotitolo');?>
+                                            <?php echo get_field('sottotitolo'); ?>
                                         </span>
                                     </a>
                                 </li>

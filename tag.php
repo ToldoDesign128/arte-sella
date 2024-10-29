@@ -8,9 +8,13 @@
 get_header(); ?>
 
 <main class="archive">
+
+    <!-- Hero page -->
+    <?php get_template_part('/template-parts/hero-page'); ?>
+
     <!-- Sezione barra di ricerca -->
-    <section class="search-bar">
-        <h2>Cerca contenuti</h2>
+    <section class="search-bar container">
+        <h2 class="title-2">Cerca contenuti</h2>
         <form id="ajax-search-form" method="GET">
             <input type="text" name="s" id="search-input" placeholder="Cerca...">
             <button type="submit">Cerca</button>
@@ -18,15 +22,15 @@ get_header(); ?>
     </section>
 
     <!-- Sezione risultati della ricerca -->
-    <section id="search-results">
+    <section id="search-results" class="container">
         <h2>Risultati della ricerca</h2>
         <div id="results-container"></div>
     </section>
 
 
     <!-- Sezione anteprime per tag -->
-    <section class="tag-previews">
-        <h2>Contenuti per tag</h2>
+    <section class="tag-previews container">
+        <h2 class="title-1">Contenuti per tag</h2>
         <?php
         // Recupera i tag selezionati con ACF
         $selected_tags = get_field('filtro_tag_archivio'); // Sostituisci 'acf_field_name' con il nome del tuo campo ACF
@@ -46,6 +50,9 @@ get_header(); ?>
                         <ul>
                             <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
                                 <li>
+                                    <div class="img-box">
+                                        <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                                    </div>
                                     <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                                     <span class="content-type">
                                         <?php echo get_content_type_label(get_post_type()); ?>
@@ -66,7 +73,7 @@ get_header(); ?>
 
 
     <!-- Sezione contenuti in evidenza -->
-    <section class="featured-content">
+    <section class="featured-content container">
         <h2>Contenuti in evidenza</h2>
 
         <?php
@@ -87,7 +94,10 @@ get_header(); ?>
             <ul>
                 <?php while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
                     <li>
-                        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+                        <div class="img-box">
+                            <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                        </div>
+                        <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                         <span class="content-type">
                             <?php echo get_content_type_label(get_post_type()); ?>
                         </span>
