@@ -27,26 +27,37 @@ get_header(); ?>
         <?php if ($custom_loop->have_posts()) : while ($custom_loop->have_posts()) : $custom_loop->the_post(); ?>
 
             <li>
-              <a href="<?php the_permalink(); ?>">
-                <div class="post-img">
-                  <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
-                </div>
-                <div class="post-title title-2 bold">
-                  <?php the_title(); ?>
-                </div>
-                <span class="post-subtitle text-body">
-                  <?php echo get_field('sottotitolo'); ?>
-                </span>
-              </a>
+
+              <?php
+              $link_struttura = get_field('link_struttura');
+              if ($link_struttura):
+
+                $link_struttura_url = $link_struttura['url'];
+                $link_struttura_title = $link_struttura['title'];
+                $link_struttura_target = $link_struttura['target'] ? $link_struttura['target'] : '_self';
+              ?>
+                <a href="<?php echo esc_url( $link_struttura_url ); ?>" target="<?php echo esc_attr( $link_struttura_target ); ?>">
+                  <div class="post-img">
+                    <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
+                  </div>
+                  <div class="post-title title-2 bold">
+                    <?php the_title(); ?>
+                  </div>
+                  <span class="post-subtitle text-body">
+                    <?php echo get_field('sottotitolo'); ?>
+                  </span>
+                </a>
+
+              <?php endif; ?>
             </li>
 
-            <?php wp_reset_postdata(); ?>
         <?php endwhile;
         endif; ?>
       </ul>
     </div>
 
   </section>
+
 
 </main>
 

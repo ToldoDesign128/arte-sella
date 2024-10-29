@@ -37,7 +37,7 @@ get_header(); ?>
 
                     <?php if ($date_fine) : ?>
                       <span>
-                        Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                        <?php echo $date_inizio ?> - <?php echo $date_fine ?>
                       </span>
                     <?php else : ?>
                       <span>
@@ -63,9 +63,28 @@ get_header(); ?>
                 <span class="post-info text-body">
                   <?php echo get_field('luogo_evento') ?>
                 </span>
+
+                <?php if ($date_inizio) : ?>
+                  <div class="post-info text-body">
+
+                    <?php if ($date_fine) : ?>
+                      <span>
+                        Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                      </span>
+                    <?php else : ?>
+                      <span>
+                        Il <?php echo $date_inizio ?>
+                      </span>
+                    <?php endif; ?>
+
+                  </div>
+                <?php endif; ?>
+
                 <span class="post-info text-body">
                   <?php echo get_field('ore') ?>
                 </span>
+
+                <span class="plus">+</span>
               </a>
             </li>
 
