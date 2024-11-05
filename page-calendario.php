@@ -18,8 +18,11 @@ get_header(); ?>
     $custom_loop = new WP_Query(array(
       'post_type'     => 'eventi',
       'posts_per_page' => -1,
-      'orderby'        => 'menu_order',
-      'order'          => 'ASC'
+
+      'meta_key'  => 'data_evento_inizio', // Il campo ACF che contiene la data
+      'orderby'   => 'meta_value', // Ordina in base al valore del campo
+      'order'     => 'ASC', // Ordina in ordine crescente (dal più vecchio al più recente)
+      'meta_type' => 'DATE', // Specifica che il campo è di tipo data
     )); ?>
 
     <div class="loop-eventi container">

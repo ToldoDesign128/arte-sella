@@ -256,6 +256,8 @@ if (have_rows('contenuto_pagina')):
                 $args = array(
                     'post_type' => array('post', 'opere', 'eventi', 'sponsor'), // Sostituisci con i tuoi CPT
                     'posts_per_page' => -1,
+                    'orderby'        => 'title',
+                    'order' => 'ASC',
                     'tax_query' => array(
                         'relation' => 'AND', // Cambia se necessario
                         array(
@@ -284,6 +286,18 @@ if (have_rows('contenuto_pagina')):
                                         <span class="post-type text-body">
                                             <?php echo get_field('sottotitolo'); ?>
                                         </span>
+
+                                        <?php
+                                        $author = get_field('autore_opera');
+                                        $year = get_field('anno_opera');
+                                        if ($author && $year) : ?>
+                                            <div class="author-box">
+                                                <span class="author title-2 text-body">
+                                                    <?php echo $author ?>, <?php echo $year ?>
+                                                </span>
+                                            </div>
+                                        <?php endif ?>
+
                                     </a>
                                 </li>
 

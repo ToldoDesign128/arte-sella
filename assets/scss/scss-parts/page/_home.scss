@@ -93,7 +93,7 @@
         .post-img {
           width: 100%;
           height: 100%;
-          aspect-ratio: 16/9;
+          aspect-ratio: 3/2;
           overflow: clip;
 
           img {
@@ -115,16 +115,6 @@
         .post-type {
           padding-top: 15px;
           color: black;
-        }
-
-        @media #{$lg} {
-          &:hover {
-            .post-img {
-              img {
-                transform: scale(1.2);
-              }
-            }
-          }
         }
       }
     }
@@ -187,7 +177,7 @@
         .post-img {
           width: 100%;
           height: 100%;
-          aspect-ratio: 4/3;
+          aspect-ratio: 3/2;
           overflow: clip;
 
           img {
@@ -232,16 +222,6 @@
           color: black;
           font-size: 4rem;
           line-height: 1;
-        }
-
-        @media #{$lg} {
-          &:hover {
-            .post-img {
-              img {
-                transform: scale(1.2);
-              }
-            }
-          }
         }
       }
     }
