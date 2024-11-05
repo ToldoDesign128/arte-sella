@@ -8,7 +8,7 @@ if (have_rows('contenuto_pagina')):
             <section class="b-100 container">
                 <div class="b-100__text">
                     <?php $text_100 = get_sub_field('testo_blocco_100');
-                    echo nl2br($text_100); ?>
+                    echo $text_100; ?>
                 </div>
             </section>
 
@@ -36,7 +36,7 @@ if (have_rows('contenuto_pagina')):
                             <div class="b-75-25__col">
                                 <div class="b-75-25__col__text">
                                     <?php $text_75 = get_sub_field('testo_blocco_75_25');
-                                    echo nl2br($text_75); ?>
+                                    echo $text_75; ?>
                                 </div>
                             </div>
 
@@ -74,7 +74,7 @@ if (have_rows('contenuto_pagina')):
                             <div class="b-50-50__col">
                                 <div class="b-50-50__col__text">
                                     <?php $text_50 = get_sub_field('testo_blocco_50_50');
-                                    echo nl2br($text_50); ?>
+                                    echo $text_50; ?>
                                 </div>
                             </div>
 
@@ -113,7 +113,7 @@ if (have_rows('contenuto_pagina')):
                             <div class="b-25-75__col">
                                 <div class="b-25-75__col__text">
                                     <?php $text_25 = get_sub_field('testo_blocco_25_75');
-                                    echo nl2br($text_25); ?>
+                                    echo $text_25; ?>
                                 </div>
                             </div>
 
@@ -152,7 +152,7 @@ if (have_rows('contenuto_pagina')):
                             <div class="b-33__col">
                                 <div class="b-33__col__text">
                                     <?php $text_33 = get_sub_field('testo_blocco_33_33_33');
-                                    echo nl2br($text_33); ?>
+                                    echo $text_33; ?>
                                 </div>
                             </div>
 

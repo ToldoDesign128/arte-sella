@@ -9,7 +9,8 @@ if (have_posts()) {
         $place = get_field('luogo_evento');
         $time = get_field('ore');
         $thumb_url = get_the_post_thumbnail_url();
-        $content = apply_filters('the_content', get_the_content());
+        //$content = apply_filters('the_content', get_the_content());
+		$content = get_the_content();
     }
 }
 ?>

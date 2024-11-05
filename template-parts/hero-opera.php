@@ -7,7 +7,8 @@ if (have_posts()) {
         $author = get_field('autore_opera');
         $year = get_field('anno_opera');
         $subtitle = get_field('sottotitolo');
-        $content = apply_filters('the_content', get_the_content());
+        //$content = apply_filters('the_content', get_the_content());
+		$content = get_the_content();
     }
 }
 ?>

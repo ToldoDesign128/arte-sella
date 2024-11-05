@@ -5,7 +5,8 @@ if (have_posts()) {
         $title = get_the_title();
         $subtitle = get_field('sottotitolo');
         $thumb_url = get_the_post_thumbnail_url();
-        $content = apply_filters('the_content', get_the_content());
+        //$content = apply_filters('the_content', get_the_content());
+		$content = get_the_content();
     }
 }
 ?>
