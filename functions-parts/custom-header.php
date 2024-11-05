@@ -21,6 +21,4 @@ function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
 function end_el(&$output, $item, $depth = 0, $args = array()) {
     $output .= '</li>';
 }
-
-// Aggiungi eventuali altre personalizzazioni per `start_lvl` o `end_lvl` se necessario
 }

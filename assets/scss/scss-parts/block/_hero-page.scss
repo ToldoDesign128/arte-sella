@@ -10,7 +10,7 @@
   flex-wrap: wrap;
 
   @media #{$lg} {
-    margin-top: 5rem;
+    margin-top: 2rem;
     padding: 0 40px;
   }
 
@@ -21,7 +21,9 @@
 
   h2 {
     padding: 20px 0;
-    font-weight: 400;
+    // font-weight: 400;
+    font-weight: 600;
+    font-size: 1.6rem;
   }
 
   .author-box {
@@ -30,27 +32,35 @@
     background-color: $primary;
     padding: 0.5rem 1rem;
     display: inline-block;
+    margin-bottom: 3rem;
   }
+
   .tag-box,
   .info-box {
     margin-top: 20px;
     width: auto;
     display: inline-block;
+    margin-bottom: 3rem;
 
     span {
       display: inline-block;
       margin: 0 0 0 20px;
-      padding: 0.5rem 1rem;
+      // padding: 0.5rem 1rem;
       background-color: $primary;
+
+      line-height: 1.2;
+      font-size: 1.7rem;
+      padding: .3rem;
     }
   }
+
   .image-box {
-    margin-top: 2rem;
+    // margin-top: 2rem;
     width: 100%;
     overflow: clip;
 
     @media #{$lg} {
-      margin-top: 3rem;
+      // margin-top: 3rem;
     }
 
     img {
@@ -60,7 +70,8 @@
       object-fit: cover;
     }
   }
-  .post-content{
+
+  .post-content {
     margin-top: 3rem;
 
     @media #{$lg} {
@@ -81,6 +92,8 @@
   .info-box {
     display: flex;
     flex-direction: column;
+    margin-bottom: 3rem;
+
     span {
       width: fit-content;
       margin: 0 20px 0 0;
@@ -88,8 +101,8 @@
   }
 }
 
-.hero-page{
-  h2{
+.hero-page {
+  h2 {
     text-align: right;
     padding: 20px 0;
 
@@ -99,10 +112,9 @@
   }
 }
 
-.hero-page-divider{
+.hero-page-divider {
   height: 1px;
   width: 100%;
   display: block;
   background-color: black;
 }
-

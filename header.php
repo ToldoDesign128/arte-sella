@@ -41,6 +41,14 @@
             </div>
 
             <div class="header-panel">
+                <div class="hedare-panel-int">
+                    <a href="#">SHOP</a>
+                    <button class="header-lang">EN</button>
+                    <button id="hamburgerBtnClose" class="hamburger-close">
+                    <span></span>
+                    <span></span>
+                </button>
+                </div>
                 <nav>
                     <?php
                     wp_nav_menu(array(

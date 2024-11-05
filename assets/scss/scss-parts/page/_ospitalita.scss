@@ -52,13 +52,15 @@
             text-transform: uppercase;
 
             @media #{$lg} {
-                padding-top: 30px;
+              padding-top: 30px;
             }
           }
 
           .post-subtitle {
             display: block;
             color: black;
+            font-size: 1rem;
+            margin-top: .5rem;
           }
 
           @media #{$lg} {

@@ -152,6 +152,18 @@ if( function_exists('acf_add_options_page') ) {
     ));
 }
 
+// ACF Menu Option 
+if( function_exists('acf_add_options_page') ) {
+
+    acf_add_options_page(array(
+        'page_title'    => 'Menu',
+        'menu_title'    => 'Menu',
+        'menu_slug'     => 'menu-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false
+    ));
+}
+
 //CPT
 require dirname(__FILE__) . '/functions-parts/cpt-eventi.php';
 require dirname(__FILE__) . '/functions-parts/cpt-opere.php';

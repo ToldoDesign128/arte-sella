@@ -61,16 +61,19 @@
             text-transform: uppercase;
 
             @media #{$lg} {
-                padding-top: 30px;
+              padding-top: 30px;
             }
           }
 
           .post-subtitle {
             display: block;
             color: black;
+            font-size: 1rem;
+            line-height: 150%;
+            margin-top: .5rem;
           }
 
-          .post-divider{
+          .post-divider {
             display: block;
             margin: 20px 0;
             height: 1px;
@@ -78,11 +81,13 @@
             background-color: black;
           }
 
-          .post-info{
+          .post-info {
             color: black;
+            font-size: 1rem;
+            line-height: 150%;
           }
 
-          .plus{
+          .plus {
             display: block;
             color: black;
             font-size: 4rem;
