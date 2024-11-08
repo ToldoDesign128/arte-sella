@@ -47,7 +47,7 @@ get_header(); ?>
             if ($selected_tags) :
                 echo '<ul class="tag-list">';
                 // Aggiungi l'elemento 'Tutti' che reindirizza all'URL della pagina corrente
-                echo '<li><a href="' . esc_url(get_permalink()) . '" class="tag-filter">Tutti</a></li>';
+                echo '<li><a href="' . esc_url(get_permalink()) . '" class="tag-filter" id="reset-filters">Tutti</a></li>';
 
                 // Stampa i tag
                 foreach ($selected_tags as $tag) :
@@ -59,6 +59,7 @@ get_header(); ?>
             endif;
             ?>
         </div>
+
 
         <!-- Sezione post, opere, eventi -->
         <div class="filtered-content">
