@@ -65,7 +65,15 @@ function filter_posts_by_tag()
 
         if ($query->have_posts()) {
             echo '<div class="' . $post_type . '-container">';
-            echo '<h3 class="title-2 bold">' . ucfirst($post_type) . '</h3><ul class="' . $post_type . '-list">';
+
+            // Modifica del titolo per "Post" (News)
+            if ($post_type == 'post') {
+                echo '<h3 class="title-2 bold">News</h3>';
+            } else {
+                echo '<h3 class="title-2 bold">' . ucfirst($post_type) . '</h3>';
+            }
+
+            echo '<ul class="' . $post_type . '-list">';
 
             while ($query->have_posts()) {
                 $query->the_post();
@@ -74,6 +82,33 @@ function filter_posts_by_tag()
                 echo '<div class="post-img">' . get_the_post_thumbnail(get_the_ID(), 'large') . '</div>';
                 echo '<p class="post-title title-4 bold">' . get_the_title() . '</p>';
                 echo '<span class="post-type text-body">' . get_field('sottotitolo') . '</span>';
+
+                if ($post_type == 'opere') {
+                    $author = get_field('autore_opera');
+                    $year = get_field('anno_opera');
+                    if ($author && $year) {
+                        echo '<div class="author-box">';
+                        echo '<span class="author title-2 text-body">' . $author . ', ' . $year . '</span>';
+                        echo '</div>';
+                    }
+                }
+
+                if ($post_type == 'eventi') {
+                    $date_inizio = get_field('data_evento_inizio');
+                    $date_fine = get_field('data_evento_fine');
+                    if ($date_inizio) {
+                        echo '<div class="event-date title-4 bold">';
+                        if ($date_fine) {
+                            echo '<span>' . substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5) . '</span>';
+                        } else {
+                            echo '<span>' . substr($date_inizio, 0, -5) . '</span>';
+                        }
+                        echo '</div>';
+                    }
+                    echo '<span class="post-info text-body">' . get_field('luogo_evento') . '</span>';
+                    echo '<span class="post-info text-body">' . get_field('ore') . '</span>';
+                }
+
                 echo '</a>';
                 echo '</li>';
             }
@@ -91,6 +126,3 @@ function filter_posts_by_tag()
 
 add_action('wp_ajax_filter_posts_by_tag', 'filter_posts_by_tag');
 add_action('wp_ajax_nopriv_filter_posts_by_tag', 'filter_posts_by_tag');
-
-
-?>
