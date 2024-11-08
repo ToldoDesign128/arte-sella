@@ -54,6 +54,8 @@ function filter_posts_by_tag()
 
     echo '<div class="filtered-content">';
 
+    $empty_content_types = []; // Array per tenere traccia dei tipi di contenuto vuoti
+
     foreach ($post_types as $post_type) {
         $args = array(
             'post_type' => $post_type,
@@ -114,9 +116,14 @@ function filter_posts_by_tag()
             }
             echo '</ul></div>';
         } else {
-            echo '<p>Nessun contenuto trovato.</p>';
+            $empty_content_types[] = ucfirst($post_type); // Aggiungi il tipo di contenuto vuoto all'array
         }
         wp_reset_postdata();
+    }
+
+    // Mostra il messaggio di "Nessun contenuto" per ciascun tipo di contenuto vuoto
+    if (!empty($empty_content_types)) {
+        echo '<p>Nessun contenuto trovato per ' . implode(', ', $empty_content_types) . '.</p>';
     }
 
     echo '</div>';
