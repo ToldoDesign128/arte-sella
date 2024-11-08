@@ -135,7 +135,6 @@ if (have_rows('contenuto_pagina')):
                 endif; ?>
             </section>
 
-
         <?php
         // Blocco 33 / 33 / 33
         elseif (get_row_layout() == 'blocco_33_33_33'): ?>
@@ -174,6 +173,24 @@ if (have_rows('contenuto_pagina')):
                 endif; ?>
             </section>
 
+        <?php
+        // Blocco CTA
+        elseif (get_row_layout() == 'cta_full'):
+
+            $cta_bg = get_sub_field('sfondo_cta');
+            $cta_testo = get_sub_field('testo_cta');
+            $cta_link = get_sub_field('link_cta');
+
+            $cta_link_url = $cta_link['url'];
+            $cta_link_target = $cta_link['target'] ? $cta_link['target'] : '_self';
+        ?>
+
+            <a class="cta" href="<?php echo esc_url($cta_link_url ); ?>" target="<?php echo esc_attr($cta_link_target); ?>">
+                <div class="container">
+                    <p class="cta-testo title-3"><?php echo esc_html($cta_testo); ?></p>
+                </div>
+                <img class="cta-img-bg" src="<?php echo esc_url($cta_bg['url']); ?>" alt="<?php echo esc_attr($cta_bg['alt']); ?>" />
+            </a>
 
         <?php
         // Linea separatrice

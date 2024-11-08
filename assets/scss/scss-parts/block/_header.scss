@@ -64,7 +64,7 @@ header {
       top: 0;
       right: -100%;
       z-index: 12;
-      background-color: white;
+      background-color: #4DC081;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -118,7 +118,7 @@ header {
 
           .header-lang{
             text-transform: uppercase;
-            background-color: lightgrey;
+            background-color: #81D2A6;
             padding: 10px;
             cursor: pointer;
           }
@@ -194,7 +194,7 @@ header {
             .sub-menu {
               max-height: 0;
               overflow-y: clip;
-              padding: 10px 0;
+              padding: 0;
               display: flex;
               flex-direction: column;
               transition: all .6s cubic-bezier(.215, .61, .355, 1);
@@ -210,6 +210,7 @@ header {
             }
             .open-sub-menu{
               max-height: 300px !important;
+              padding: 10px 0 !important;
             }
           }
 

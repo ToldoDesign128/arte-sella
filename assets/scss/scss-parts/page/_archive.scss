@@ -13,6 +13,31 @@
     @media #{$xxl} {
       padding: 50px 40px;
     }
+
+    form{
+      margin: 20px 0;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+
+      input{
+        min-width: 30%;
+        padding: 10px;
+      }
+
+      button{
+        cursor: pointer;
+        background-color: lightgray;
+        text-transform: uppercase;
+        padding: 10px 20px;
+        opacity: 1;
+        transition: all .6s cubic-bezier(.215, .61, .355, 1);
+
+        &:hover{
+          opacity: .8;
+        }
+      }
+    }
   }
 
   #search-results {
@@ -25,6 +50,50 @@
 
     @media #{$xxl} {
       padding: 50px 40px;
+    }
+
+    h2{
+      padding: 40px 0;
+    }
+
+    #results-container {
+      .search-result {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+
+        li {
+          list-style: none;
+
+          a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+
+            .post-img {
+              width: 100%;
+              height: 100%;
+              aspect-ratio: 3/2;
+              overflow: clip;
+
+              img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+              }
+            }
+
+            .post-title {
+              padding-top: 20px;
+              color: black;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -44,86 +113,164 @@
       width: 100%;
     }
 
-    .tag-container {
-      padding-top: 30px;
+    .tags-filter {
+      padding: 40px 0;
+      width: 100%;
+      display: block;
 
-      h3 {
-        text-transform: uppercase;
-      }
-
-      ul {
-        padding: 40px 0;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 30px;
-        list-style-type: none;
-
-        @media #{$lg} {
-          grid-template-columns: repeat(3, 1fr);
-        }
+      .tag-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 20px;
+        list-style: none;
 
         li {
-          width: 100%;
+          display: block;
+          opacity: 1;
+          transition: all 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-          .img-box {
-            aspect-ratio: 3/2;
-            width: 100%;
+          .tag-filter {
+            display: block;
+            padding: 10px;
+            background-color: $primary;
+            color: black;
+            text-decoration: none;
+            text-transform: uppercase;
+          }
 
-            img {
-              display: block;
-              width: 100%;
-              height: 100%;
-              max-width: 100%;
-              max-height: 100%;
-              object-fit: cover;
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+
+    .filtered-content {
+
+      .post-container,
+      .opere-container,
+      .eventi-container {
+        padding: 20px 0;
+
+        h3 {
+          padding: 40px 0;
+        }
+        ul {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 40px 20px;
+
+          @media #{$lg} {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          li {
+            list-style: none;
+
+            a {
+              text-decoration: none;
+              display: flex;
+              flex-direction: column;
+
+              .post-img {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 3/2;
+                overflow: clip;
+
+                img {
+                  display: block;
+                  max-width: 100%;
+                  max-height: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+                }
+              }
+
+              .post-title {
+                padding-top: 20px;
+                color: black;
+                text-transform: uppercase;
+              }
             }
           }
-
         }
       }
-    }
-  }
 
-  .featured-content {
-    width: 100%;
-    padding: 20px;
-
-    @media #{$lg} {
-      padding: 40px;
-    }
-
-    @media #{$xxl} {
-      padding: 50px 40px;
-    }
-
-    ul {
-      padding: 40px 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-      list-style-type: none;
-
-      @media #{$lg} {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      li {
-        width: 100%;
-
-        .img-box {
-          aspect-ratio: 3/2;
-          width: 100%;
-
-          img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover;
+      .eventi-list{
+        li {
+          list-style: none;
+    
+          a {
+            position: relative;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+    
+            .event-date {
+              position: absolute;
+              z-index: 10;
+              top: 0;
+              left: 0;
+              padding: 10px 20px;
+              color: white;
+              background-color: $primary;
+            }
+    
+            .post-img {
+              width: 100%;
+              height: 100%;
+              aspect-ratio: 3/2;
+              overflow: clip;
+    
+              img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: all 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+              }
+            }
+    
+            .post-title {
+              padding-top: 20px;
+              color: black;
+              text-transform: uppercase;
+    
+              @media #{$lg} {
+                padding-top: 30px;
+              }
+            }
+    
+            .post-subtitle {
+              display: block;
+              color: black;
+            }
+    
+            .post-divider {
+              display: block;
+              margin: 20px 0;
+              height: 1px;
+              width: 100%;
+              background-color: black;
+            }
+    
+            .post-info {
+              color: black;
+            }
+    
+            .plus {
+              display: block;
+              color: black;
+              font-size: 4rem;
+              line-height: 1;
+            }
           }
         }
-
       }
     }
   }

@@ -31,84 +31,197 @@ get_header(); ?>
     <!-- Sezione anteprime per tag -->
     <section class="tag-previews container">
         <h2 class="title-1">Contenuti per tag</h2>
-        <?php
-        // Recupera i tag selezionati con ACF
-        $selected_tags = get_field('filtro_tag_archivio'); // Sostituisci 'acf_field_name' con il nome del tuo campo ACF
 
-        if ($selected_tags) :
-            foreach ($selected_tags as $tag) :
-                $tag_link = get_tag_link($tag->term_id);
-                $args = array(
-                    'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
-                    'tag_id' => $tag->term_id,
-                    'posts_per_page' => 9 // Limita i post mostrati
-                );
-                $tag_query = new WP_Query($args);
-                if ($tag_query->have_posts()) : ?>
-                    <div class="tag-container">
-                        <h3 class="title-2"><?php echo esc_html($tag->name); ?></h3>
-                        <ul>
-                            <?php while ($tag_query->have_posts()) : $tag_query->the_post(); ?>
-                                <li>
-                                    <div class="img-box">
+        <!-- Sezione tag -->
+        <div class="tags-filter">
+            <?php
+            // Recupera tutti i tag associati a 'post', 'opere', 'eventi'
+            $all_tags = get_tags(array(
+                'hide_empty' => true,
+            ));
+
+            if ($all_tags) :
+                echo '<ul class="tag-list">';
+
+                // Aggiungi l'elemento 'Tutti' che reindirizza all'URL della pagina corrente
+                echo '<li><a href="' . esc_url(get_permalink()) . '" class="tag-filter">Tutti</a></li>';
+
+                // Stampa i tag
+                foreach ($all_tags as $tag) :
+                    echo '<li><a href="#" class="tag-filter" data-tag-id="' . esc_attr($tag->term_id) . '">' . esc_html($tag->name) . '</a></li>';
+                endforeach;
+
+                echo '</ul>';
+            else :
+                echo '<p>Nessun tag disponibile.</p>';
+            endif;
+            ?>
+        </div>
+
+
+        <!-- Sezione post, opere, eventi -->
+        <div class="filtered-content">
+
+            <!-- Container Post -->
+            <div class="post-container">
+                <h3 class="title-2 bold">News</h3>
+                <ul class="post-list">
+                    <?php
+                    // Mostra tutti i post di default
+                    $args_post = array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 9
+                    );
+                    $post_query = new WP_Query($args_post);
+                    if ($post_query->have_posts()) :
+                        while ($post_query->have_posts()) : $post_query->the_post(); ?>
+                            <li>
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="post-img"><?php the_post_thumbnail('large'); ?></div>
+                                    <p class="post-title title-4 bold"><?php the_title(); ?></p>
+                                    <span class="post-type text-body">
+                                        <?php echo get_field('sottotitolo'); ?>
+                                    </span>
+                                </a>
+                            </li>
+                    <?php endwhile;
+                        wp_reset_postdata();
+                    else :
+                        echo '<p>Nessun post trovato.</p>';
+                    endif;
+                    ?>
+                </ul>
+            </div>
+
+            <!-- Container Opere -->
+            <div class="opere-container">
+                <h3 class="title-2 bold">Opere</h3>
+                <ul class="opere-list">
+                    <?php
+                    $args_opere = array(
+                        'post_type' => 'opere',
+                        'posts_per_page' => 9
+                    );
+                    $opere_query = new WP_Query($args_opere);
+                    if ($opere_query->have_posts()) :
+                        while ($opere_query->have_posts()) : $opere_query->the_post(); ?>
+                            <li>
+                                <a href="<?php the_permalink(); ?>">
+                                    <div class="post-img"><?php the_post_thumbnail('large'); ?></div>
+                                    <p class="post-title title-4 bold"><?php the_title(); ?></p>
+                                    <span class="post-type text-body">
+                                        <?php echo get_field('sottotitolo'); ?>
+                                    </span>
+
+                                    <?php
+                                    $author = get_field('autore_opera');
+                                    $year = get_field('anno_opera');
+                                    if ($author && $year) : ?>
+                                        <div class="author-box">
+                                            <span class="author title-2 text-body">
+                                                <?php echo $author ?>, <?php echo $year ?>
+                                            </span>
+                                        </div>
+                                    <?php endif ?>
+                                </a>
+                            </li>
+                    <?php endwhile;
+                        wp_reset_postdata();
+                    else :
+                        echo '<p>Nessuna opera trovata.</p>';
+                    endif;
+                    ?>
+                </ul>
+            </div>
+
+            <!-- Container Eventi -->
+            <div class="eventi-container">
+                <h3 class="title-2 bold">Eventi</h3>
+                <ul class="eventi-list">
+                    <?php
+                    $args_eventi = array(
+                        'post_type' => 'eventi',
+                        'posts_per_page' => 9
+                    );
+                    $eventi_query = new WP_Query($args_eventi);
+                    if ($eventi_query->have_posts()) :
+
+                        while ($eventi_query->have_posts()) : $eventi_query->the_post();
+
+                            $date_inizio = get_field('data_evento_inizio');
+                            $date_fine = get_field('data_evento_fine');
+
+                    ?>
+                            <li>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php if ($date_inizio) : ?>
+                                        <div class="event-date title-4 bold">
+
+                                            <?php if ($date_fine) : ?>
+                                                <span>
+                                                    <?php
+                                                    echo substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5);
+                                                    ?>
+                                                </span>
+                                            <?php else : ?>
+                                                <span>
+                                                    <?php
+                                                    echo substr($date_inizio, 0, -5);
+                                                    ?>
+                                                </span>
+                                            <?php endif; ?>
+
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <div class="post-img">
                                         <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
                                     </div>
-                                    <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                                    <span class="content-type text-body">
-                                        <?php echo get_content_type_label(get_post_type()); ?>
+                                    <div class="post-title title-2 bold">
+                                        <?php the_title(); ?>
+                                    </div>
+                                    <span class="post-subtitle text-body">
+                                        <?php echo get_field('sottotitolo'); ?>
                                     </span>
-                                </li>
-                            <?php endwhile; ?>
-                        </ul>
-                    </div>
-        <?php
-                endif;
-                wp_reset_postdata();
-            endforeach;
-        else :
-            echo '<p>Nessun tag selezionato.</p>';
-        endif;
-        ?>
-    </section>
 
+                                    <span class="post-divider"></span>
 
-    <!-- Sezione contenuti in evidenza -->
-    <section class="featured-content container">
-        <h2>Contenuti in evidenza</h2>
+                                    <span class="post-info text-body">
+                                        <?php echo get_field('luogo_evento') ?>
+                                    </span>
 
-        <?php
-        $args = array(
-            'post_type' => array('post', 'opere', 'eventi', 'sponsor'),
-            'meta_query' => array(
-                array(
-                    'key' => 'in_evidenza_archivio',
-                    'value' => '1',
-                    'compare' => '=='
-                )
-            ),
-            'posts_per_page' => 9
-        );
-        $featured_query = new WP_Query($args);
+                                    <?php if ($date_inizio) : ?>
+                                        <div class="post-info text-body">
 
-        if ($featured_query->have_posts()) : ?>
-            <ul>
-                <?php while ($featured_query->have_posts()) : $featured_query->the_post(); ?>
-                    <li>
-                        <div class="img-box">
-                            <?php the_post_thumbnail('large', array('class' => 'img-res', 'alt' => get_the_title())); ?>
-                        </div>
-                        <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                        <span class="content-type">
-                            <?php echo get_content_type_label(get_post_type()); ?>
-                        </span>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else : ?>
-            <p>Nessun contenuto in evidenza.</p>
-        <?php endif; ?>
+                                            <?php if ($date_fine) : ?>
+                                                <span>
+                                                    Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
+                                                </span>
+                                            <?php else : ?>
+                                                <span>
+                                                    Il <?php echo $date_inizio ?>
+                                                </span>
+                                            <?php endif; ?>
 
-        <?php wp_reset_postdata(); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <span class="post-info text-body">
+                                        <?php echo get_field('ore') ?>
+                                    </span>
+
+                                    <span class="plus">+</span>
+                                </a>
+                            </li>
+                    <?php endwhile;
+                        wp_reset_postdata();
+                    else :
+                        echo '<p>Nessun evento trovato.</p>';
+                    endif;
+                    ?>
+                </ul>
+            </div>
+        </div>
     </section>
 </main>
 
