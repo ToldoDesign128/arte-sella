@@ -23,24 +23,22 @@ jQuery(document).ready(function($) {
     });
 
     // Funzione per filtrare i contenuti tramite tag
-    $('.tag-filter').on('click', function(event) {
-        event.preventDefault();
-
-        var tagID = $(this).data('tag-id') || 0; // Valore predefinito 0 se non selezionato
-
-        $.ajax({
-            url: ajaxurl, // URL per gestire la richiesta AJAX
-            type: 'POST',
-            data: {
-                action: 'filter_by_tag', // Azione definita nel backend PHP
-                tag_id: tagID
-            },
-            success: function(response) {
-                $('.filtered-content').html(response); // Aggiorna i contenuti filtrati
-            },
-            error: function() {
-                console.error('Errore durante il filtraggio dei contenuti.');
-            }
+    jQuery(document).ready(function($) {
+        $('.tag-filter').on('click', function(e) {
+            e.preventDefault();
+            var tagId = $(this).data('tag-id');
+    
+            $.ajax({
+                url: ajaxurl, // Assumi che ajaxurl sia definito da WordPress
+                type: 'POST',
+                data: {
+                    action: 'filter_posts_by_tag',
+                    tag_id: tagId
+                },
+                success: function(response) {
+                    $('.filtered-content').html(response);
+                }
+            });
         });
-    });
+    });    
 });

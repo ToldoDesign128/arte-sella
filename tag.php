@@ -35,29 +35,30 @@ get_header(); ?>
         <!-- Sezione tag -->
         <div class="tags-filter">
             <?php
-            // Recupera tutti i tag associati a 'post', 'opere', 'eventi'
-            $all_tags = get_tags(array(
-                'hide_empty' => true,
-            ));
+            // Recupera i tag selezionati nel campo ACF 'filtro_tag_archivio'
+            $selected_tags = get_field('filtro_tag_archivio');
 
-            if ($all_tags) :
+            if ($selected_tags) {
+                $tag_ids = wp_list_pluck($selected_tags, 'term_id'); // Ottieni solo gli ID dei tag
+            } else {
+                $tag_ids = []; // Nessun tag selezionato
+            }
+
+            if ($selected_tags) :
                 echo '<ul class="tag-list">';
-
                 // Aggiungi l'elemento 'Tutti' che reindirizza all'URL della pagina corrente
                 echo '<li><a href="' . esc_url(get_permalink()) . '" class="tag-filter">Tutti</a></li>';
 
                 // Stampa i tag
-                foreach ($all_tags as $tag) :
+                foreach ($selected_tags as $tag) :
                     echo '<li><a href="#" class="tag-filter" data-tag-id="' . esc_attr($tag->term_id) . '">' . esc_html($tag->name) . '</a></li>';
                 endforeach;
-
                 echo '</ul>';
             else :
                 echo '<p>Nessun tag disponibile.</p>';
             endif;
             ?>
         </div>
-
 
         <!-- Sezione post, opere, eventi -->
         <div class="filtered-content">
@@ -70,7 +71,8 @@ get_header(); ?>
                     // Mostra tutti i post di default
                     $args_post = array(
                         'post_type' => 'post',
-                        'posts_per_page' => 9
+                        'posts_per_page' => -1,
+                        'tag__in' => $tag_ids ?: null // Carica tutti i post se non ci sono tag selezionati
                     );
                     $post_query = new WP_Query($args_post);
                     if ($post_query->have_posts()) :
@@ -100,8 +102,10 @@ get_header(); ?>
                     <?php
                     $args_opere = array(
                         'post_type' => 'opere',
-                        'posts_per_page' => 9
+                        'posts_per_page' => -1,
+                        'tag__in' => $tag_ids ?: null // Carica tutte le opere se non ci sono tag selezionati
                     );
+
                     $opere_query = new WP_Query($args_opere);
                     if ($opere_query->have_posts()) :
                         while ($opere_query->have_posts()) : $opere_query->the_post(); ?>
@@ -141,36 +145,30 @@ get_header(); ?>
                     <?php
                     $args_eventi = array(
                         'post_type' => 'eventi',
-                        'posts_per_page' => 9
+                        'posts_per_page' => -1,
+                        'tag__in' => $tag_ids ?: null // Carica tutti gli eventi se non ci sono tag selezionati
                     );
+
                     $eventi_query = new WP_Query($args_eventi);
                     if ($eventi_query->have_posts()) :
-
                         while ($eventi_query->have_posts()) : $eventi_query->the_post();
 
                             $date_inizio = get_field('data_evento_inizio');
                             $date_fine = get_field('data_evento_fine');
-
                     ?>
                             <li>
                                 <a href="<?php the_permalink(); ?>">
                                     <?php if ($date_inizio) : ?>
                                         <div class="event-date title-4 bold">
-
                                             <?php if ($date_fine) : ?>
                                                 <span>
-                                                    <?php
-                                                    echo substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5);
-                                                    ?>
+                                                    <?php echo substr($date_inizio, 0, -5) . ' - ' . substr($date_fine, 0, -5); ?>
                                                 </span>
                                             <?php else : ?>
                                                 <span>
-                                                    <?php
-                                                    echo substr($date_inizio, 0, -5);
-                                                    ?>
+                                                    <?php echo substr($date_inizio, 0, -5); ?>
                                                 </span>
                                             <?php endif; ?>
-
                                         </div>
                                     <?php endif; ?>
 
@@ -183,26 +181,18 @@ get_header(); ?>
                                     <span class="post-subtitle text-body">
                                         <?php echo get_field('sottotitolo'); ?>
                                     </span>
-
                                     <span class="post-divider"></span>
-
                                     <span class="post-info text-body">
                                         <?php echo get_field('luogo_evento') ?>
                                     </span>
 
                                     <?php if ($date_inizio) : ?>
                                         <div class="post-info text-body">
-
                                             <?php if ($date_fine) : ?>
-                                                <span>
-                                                    Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?>
-                                                </span>
+                                                <span>Dal <?php echo $date_inizio ?> al <?php echo $date_fine ?></span>
                                             <?php else : ?>
-                                                <span>
-                                                    Il <?php echo $date_inizio ?>
-                                                </span>
+                                                <span>Il <?php echo $date_inizio ?></span>
                                             <?php endif; ?>
-
                                         </div>
                                     <?php endif; ?>
 
@@ -223,6 +213,7 @@ get_header(); ?>
             </div>
         </div>
     </section>
+
 </main>
 
 <?php get_footer(); ?>

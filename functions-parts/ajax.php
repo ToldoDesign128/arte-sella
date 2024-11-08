@@ -39,22 +39,27 @@ add_action('wp_ajax_nopriv_ajax_search', 'ajax_search'); // Per utenti non logga
 // Filtraggio Tag
 function filter_posts_by_tag()
 {
+    // Recupera il tag selezionato dal frontend tramite AJAX
     $tag_id = isset($_POST['tag_id']) ? intval($_POST['tag_id']) : 0;
+
+    // Recupera i tag selezionati tramite ACF
+    $selected_tags = get_field('filtro_tag_archivio', 'option'); // Se hai impostato il campo in un'opzione del tema
+    $tag_ids = wp_list_pluck($selected_tags, 'term_id'); // Ottieni gli ID dei tag
+
+    if ($tag_id != 0) {
+        $tag_ids[] = $tag_id; // Aggiungi il tag selezionato via AJAX
+    }
 
     $post_types = array('post', 'opere', 'eventi'); // Elenco dei post types da filtrare
 
     echo '<div class="filtered-content">';
 
     foreach ($post_types as $post_type) {
-        // Crea gli argomenti della query per ogni post type
         $args = array(
             'post_type' => $post_type,
-            'posts_per_page' => 9
+            'posts_per_page' => 9,
+            'tag__in' => $tag_ids // Filtra i post con i tag selezionati
         );
-
-        if ($tag_id != 0) {
-            $args['tag_id'] = $tag_id; // Applica il filtro del tag solo se specificato
-        }
 
         $query = new WP_Query($args);
 
@@ -69,51 +74,23 @@ function filter_posts_by_tag()
                 echo '<div class="post-img">' . get_the_post_thumbnail(get_the_ID(), 'large') . '</div>';
                 echo '<p class="post-title title-4 bold">' . get_the_title() . '</p>';
                 echo '<span class="post-type text-body">' . get_field('sottotitolo') . '</span>';
-
-                // Contenuti aggiuntivi per 'opere' e 'eventi'
-                if ($post_type == 'opere') {
-                    $author = get_field('autore_opera');
-                    $year = get_field('anno_opera');
-                    if ($author && $year) {
-                        echo '<div class="author-box">';
-                        echo '<span class="author title-2 text-body">' . $author . ', ' . $year . '</span>';
-                        echo '</div>';
-                    }
-                } elseif ($post_type == 'eventi') {
-                    $date_inizio = get_field('data_evento_inizio');
-                    $date_fine = get_field('data_evento_fine');
-                    if ($date_inizio) {
-                        echo '<div class="event-date title-4 bold">';
-                        echo '<span>' . substr($date_inizio, 0, -5) . ($date_fine ? ' - ' . substr($date_fine, 0, -5) : '') . '</span>';
-                        echo '</div>';
-                    }
-                    echo '<span class="post-info text-body">' . get_field('luogo_evento') . '</span>';
-                    if ($date_inizio) {
-                        echo '<div class="post-info text-body">';
-                        echo $date_fine ? 'Dal ' . $date_inizio . ' al ' . $date_fine : 'Il ' . $date_inizio;
-                        echo '</div>';
-                    }
-                    echo '<span class="post-info text-body">' . get_field('ore') . '</span>';
-                }
-
                 echo '</a>';
                 echo '</li>';
             }
-
             echo '</ul></div>';
         } else {
-            echo '<p>Nessun ' . $post_type . ' trovato.</p>';
+            echo '<p>Nessun contenuto trovato.</p>';
         }
-
         wp_reset_postdata();
     }
 
-    echo '</div>'; // Chiusura div .filtered-content
+    echo '</div>';
 
     wp_die(); // Termina l'esecuzione dello script
 }
 
-add_action('wp_ajax_filter_by_tag', 'filter_posts_by_tag');
-add_action('wp_ajax_nopriv_filter_by_tag', 'filter_posts_by_tag');
+add_action('wp_ajax_filter_posts_by_tag', 'filter_posts_by_tag');
+add_action('wp_ajax_nopriv_filter_posts_by_tag', 'filter_posts_by_tag');
+
 
 ?>
